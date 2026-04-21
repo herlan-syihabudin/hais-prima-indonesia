@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Product } from "@/types/product";
+import { FaWhatsapp, FaRuler, FaWeightHanging } from "react-icons/fa";
+import Button from "@/components/ui/Button";
 
 interface ProductCardProps {
   product: Product;
@@ -10,31 +12,62 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, index }: ProductCardProps) {
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281234567890";
+  const message = `Halo, saya tertarik dengan produk ${product.name} dari PT Hais Prima Indonesia`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
+      className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
     >
-      <div className="relative h-48">
+      <div className="relative h-52 overflow-hidden">
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-cover"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
+        <div className="absolute top-3 left-3">
+          <span className="bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+            {product.category}
+          </span>
+        </div>
       </div>
+
       <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-        <p className="text-gray-600 text-sm mb-2">{product.category}</p>
-        <p className="text-gray-500 text-sm mb-3">{product.description}</p>
-        <div className="flex justify-between items-center">
-          <span className="text-primary font-bold">{product.price}</span>
-          <button className="bg-primary text-white px-3 py-1 rounded hover:bg-blue-700 transition">
-            Detail
-          </button>
+        <h3 className="text-lg font-bold mb-1 line-clamp-1">{product.name}</h3>
+        
+        {/* Quick specs */}
+        <div className="flex gap-3 mb-3 text-xs text-gray-500">
+          {product.specifications?.slice(0, 2).map((spec, i) => (
+            <span key={i} className="flex items-center gap-1">
+              {i === 0 ? <FaRuler size={10} /> : <FaWeightHanging size={10} />}
+              {spec}
+            </span>
+          ))}
+        </div>
+
+        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+          {product.description}
+        </p>
+
+        <div className="flex items-center justify-between">
+          <div>
+            <span className="text-xs text-gray-500">Harga</span>
+            <p className="text-xl font-bold text-blue-600">{product.price}</p>
+          </div>
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition flex items-center gap-2 text-sm font-semibold"
+          >
+            <FaWhatsapp size={16} />
+            Beli
+          </a>
         </div>
       </div>
     </motion.div>
