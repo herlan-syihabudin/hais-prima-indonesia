@@ -10,7 +10,7 @@ export default function ContactPage() {
     {
       icon: FaMapMarkerAlt,
       title: "Alamat",
-      content: "Jl. Raya Industri No. 123, Kawasan Industri Pulogadung, Jakarta Timur 13930",
+      content: "Ruko CBP Galuh Mas Blok D No. 6D, Lt 2 Kelurahan Sukaharja,Kecamatan Teluk Jambe Timur,Kabupaten Karawang-Jawa Barat-41361",
       color: "text-blue-600",
     },
     {
