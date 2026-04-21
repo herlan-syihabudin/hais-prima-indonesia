@@ -23,4 +23,9 @@ export default function CTASection() {
           </p>
           <Button href="/contact" size="lg" variant="white">
             Hubungi Kami Sekarang
-          </
+          </Button>
+        </motion.div>
+      </Container>
+    </section>
+  );
+}
