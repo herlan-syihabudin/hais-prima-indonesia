@@ -5,5 +5,7 @@ export interface Product {
   description: string;
   price: string;
   image: string;
-  specifications: string[];
+  specifications: string[]; // Pastikan ini ada
+  rating?: number; // Opsional
+  stock?: string; // Opsional
 }
