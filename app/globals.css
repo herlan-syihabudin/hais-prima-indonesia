@@ -8,7 +8,11 @@
   }
   
   body {
-    @apply font-sans text-dark antialiased;
+    @apply font-sans text-gray-800 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
   }
 }
 
@@ -18,7 +22,15 @@
   }
   
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 }
 
@@ -26,4 +38,30 @@
   .text-shadow {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
 }
