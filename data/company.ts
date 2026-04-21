@@ -12,7 +12,7 @@ export const companyInfo = {
   contact: {
     phone: "+62 21 1234 5678",
     email: "info@haisprima.com",
-    address: "Jl. Raya Industri No. 123, Kawasan Industri Pulogadung, Jakarta Timur 13930",
+    address: "Ruko CBP Galuh Mas Blok D No. 6D, Lt 2 Kelurahan Sukaharja,Kecamatan Teluk Jambe Timur,Kabupaten Karawang-Jawa Barat-41361.",
     whatsapp: "6281234567890",
   },
   socialMedia: {
