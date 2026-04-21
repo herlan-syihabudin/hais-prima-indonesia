@@ -65,3 +65,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #1d4ed8;
 }
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
