@@ -3,14 +3,12 @@
 
 import { useState, useEffect } from "react";
 import Container from "@/components/ui/Container";
-import SectionTitle from "@/components/shared/SectionTitle";
 import { testimonials } from "@/data/testimonials";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaQuoteLeft, FaStar, FaStarHalf, FaChevronLeft, FaChevronRight, FaBuilding } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { FaQuoteLeft, FaStar, FaStarHalf, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function TestimonialSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [autoplay, setAutoplay] = useState(true);
 
   const nextTestimonial = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -21,112 +19,94 @@ export default function TestimonialSection() {
   };
 
   useEffect(() => {
-    if (!autoplay) return;
     const interval = setInterval(nextTestimonial, 5000);
     return () => clearInterval(interval);
-  }, [autoplay, currentIndex]);
+  }, []);
 
   const current = testimonials[currentIndex];
 
-  // Render stars
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
-      if (i <= rating) {
-        stars.push(<FaStar key={i} className="text-yellow-400" />);
-      } else if (i - 0.5 <= rating) {
-        stars.push(<FaStarHalf key={i} className="text-yellow-400" />);
-      } else {
-        stars.push(<FaStar key={i} className="text-gray-300" />);
-      }
+      stars.push(
+        i <= rating ? (
+          <FaStar key={i} className="text-yellow-400 text-xs" />
+        ) : i - 0.5 <= rating ? (
+          <FaStarHalf key={i} className="text-yellow-400 text-xs" />
+        ) : (
+          <FaStar key={i} className="text-gray-300 text-xs" />
+        )
+      );
     }
     return stars;
   };
 
   return (
-    <section className="section-padding bg-gradient-to-b from-gray-900 to-gray-800 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:40px_40px]" />
-      </div>
-
+    <section className="py-12 bg-gray-50 border-t border-gray-200">
       <Container>
-        <SectionTitle
-          title="Apa Kata Klien Kami"
-          subtitle="Mitra yang telah mempercayakan proyeknya kepada PT Hais Prima Indonesia"
-          variant="minimal"
-        />
+        {/* Header Compact */}
+        <div className="text-center mb-8">
+          <p className="text-xs font-mono text-gray-400 tracking-wider">TESTIMONIALS</p>
+          <h2 className="text-2xl font-bold text-gray-800 mt-1">Apa Kata Klien Kami</h2>
+        </div>
 
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="relative"
-          >
-            {/* Quote Icon */}
-            <FaQuoteLeft className="text-4xl text-blue-400/30 mb-6" />
+        {/* Testimonial Card Compact */}
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            {/* Quote & Content */}
+            <div className="flex gap-3">
+              <FaQuoteLeft className="text-blue-500/20 text-2xl flex-shrink-0" />
+              <p className="text-gray-600 text-sm leading-relaxed italic">
+                "{current.content}"
+              </p>
+            </div>
 
-            {/* Content */}
-            <p className="text-xl md:text-2xl leading-relaxed text-gray-200 mb-8">
-              "{current.content}"
-            </p>
-
-            {/* Client Info */}
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-xl font-bold text-white">
-                  {current.name.charAt(0)}
-                </span>
+            {/* Client Info & Rating */}
+            <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-sm">
+                    {current.name.charAt(0)}
+                  </span>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-800 text-sm">{current.name}</h4>
+                  <p className="text-xs text-gray-400">
+                    {current.position} • {current.company}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-bold text-lg">{current.name}</h4>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <span>{current.position}</span>
-                  <span>•</span>
-                  <div className="flex items-center gap-1">
-                    <FaBuilding size={12} />
-                    <span>{current.company}</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 mt-1">
-                  {renderStars(current.rating)}
-                </div>
+              <div className="flex gap-0.5">
+                {renderStars(current.rating)}
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/10">
-            <div className="flex gap-2">
+          {/* Navigation Compact */}
+          <div className="flex items-center justify-center gap-4 mt-4">
+            <button
+              onClick={prevTestimonial}
+              className="p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition"
+            >
+              <FaChevronLeft size={12} className="text-gray-600" />
+            </button>
+            <div className="flex gap-1">
               {testimonials.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`transition-all h-1.5 rounded-full ${
-                    idx === currentIndex
-                      ? "w-8 bg-blue-500"
-                      : "w-4 bg-white/30 hover:bg-white/50"
+                  className={`transition-all h-1 rounded-full ${
+                    idx === currentIndex ? "w-4 bg-blue-500" : "w-2 bg-gray-300"
                   }`}
                 />
               ))}
             </div>
-            <div className="flex gap-2">
-              <button
-                onClick={prevTestimonial}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
-              >
-                <FaChevronLeft />
-              </button>
-              <button
-                onClick={nextTestimonial}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
-              >
-                <FaChevronRight />
-              </button>
-            </div>
+            <button
+              onClick={nextTestimonial}
+              className="p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition"
+            >
+              <FaChevronRight size={12} className="text-gray-600" />
+            </button>
           </div>
         </div>
       </Container>
