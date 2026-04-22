@@ -15,11 +15,11 @@ export default function Home() {
     <>
       <Hero />
       <TrustedPartners />
+      <TestimonialSection />
       <BusinessLines />
       <ProductHighlights />
       <WhyChooseUs />
       <ProjectPreview />
-      <TestimonialSection />
       <CTASection />
     </>
   );
