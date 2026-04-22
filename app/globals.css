@@ -135,3 +135,51 @@ html {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
+
+ /* Premium Card Effects */
+@layer components {
+  .premium-card {
+    @apply relative overflow-hidden rounded-2xl border transition-all duration-500;
+  }
+  
+  .premium-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  }
+  
+  .premium-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .glow-border {
+    position: relative;
+  }
+  
+  .glow-border::after {
+    content: '';
+    @apply absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #14b8a6);
+    z-index: -1;
+  }
+  
+  .glow-border:hover::after {
+    @apply opacity-100;
+  }
+}
+
+/* Corporate Dashboard Stats Animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-value {
+  animation: countUp 0.6s ease-out forwards;
+}
