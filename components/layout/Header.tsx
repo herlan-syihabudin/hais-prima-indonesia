@@ -115,7 +115,7 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative">
                 <Image 
-                  src="/images/logo.png" 
+                  src="/images/logo.jpeg" 
                   alt="Logo" 
                   width={shouldShowSolid ? 45 : 50} 
                   height={shouldShowSolid ? 45 : 50}
