@@ -1,62 +1,222 @@
+// src/app/products/page.tsx
 "use client";
 
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Container from "@/components/ui/Container";
-import SectionTitle from "@/components/shared/SectionTitle";
 import ProductCard from "@/components/shared/ProductCard";
 import { products } from "@/data/products";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { FaArrowLeft, FaFilter } from "react-icons/fa";
 
-export default function ProductsPage() {
-  const categories = ["Semua", "Besi Beton", "Hollow", "WF/H-Beam", "Wiremesh", "Plat Besi"];
-  const [activeCategory, setActiveCategory] = useState("Semua");
+function ProductsContent() {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+  const subParam = searchParams.get("sub");
+  
+  const [activeCategory, setActiveCategory] = useState<string>("Semua");
+  const [activeSubCategory, setActiveSubCategory] = useState<string>("");
 
-  const filteredProducts = activeCategory === "Semua"
-    ? products
-    : products.filter(p => p.category === activeCategory);
+  // Set filter from URL params
+  useEffect(() => {
+    if (categoryParam) {
+      setActiveCategory(categoryParam);
+    }
+    if (subParam) {
+      setActiveSubCategory(subParam);
+    }
+  }, [categoryParam, subParam]);
+
+  // Categories based on data
+  const categories = ["Semua", "Material Steel", "Material SUS", "Warehouse Racking", "Atap UPVC"];
+  
+  // Subcategories mapping
+  const subCategories: Record<string, string[]> = {
+    "Material Steel": ["Plate", "WF Beam", "H-Beam", "Siku", "UNP", "Pipa", "Pipa Seamless", "Fitting"],
+    "Material SUS": ["Plate", "Pipa", "Siku", "UNP", "Fitting"],
+    "Warehouse Racking": ["Pallet Racking", "Heavy Duty", "Mezzanine", "Drive-in"],
+    "Atap UPVC": ["Roofing", "Lisplang", "Talang", "Aksesoris"],
+  };
+
+  // Filter products
+  const filteredProducts = products.filter(product => {
+    if (activeCategory !== "Semua" && product.category !== activeCategory) {
+      return false;
+    }
+    if (activeSubCategory && product.subCategory !== activeSubCategory) {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <>
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      {/* Header */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
         <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Produk Kami</h1>
-            <p className="text-lg text-blue-100 max-w-2xl">
-              Berbagai pilihan besi dan baja berkualitas untuk kebutuhan konstruksi Anda
-            </p>
-          </motion.div>
+          <Link href="/" className="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4">
+            <FaArrowLeft size={14} /> Kembali ke Beranda
+          </Link>
+          <h1 className="text-4xl font-bold">Katalog Produk</h1>
+          <p className="text-blue-100 mt-2">
+            {filteredProducts.length} produk ditemukan
+          </p>
         </Container>
       </section>
 
       <section className="section-padding">
         <Container>
-          <div className="flex flex-wrap gap-3 justify-center mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2 rounded-full font-medium transition-all ${
-                  activeCategory === category
-                    ? "bg-primary text-white shadow-lg"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Sidebar Filter */}
+            <div className="lg:w-64 flex-shrink-0">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sticky top-24">
+                <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-100">
+                  <FaFilter className="text-blue-600 text-sm" />
+                  <h3 className="font-semibold text-gray-800">Filter Produk</h3>
+                </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
-            ))}
+                {/* Category Filter */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-gray-700 mb-2">Kategori</h4>
+                  <div className="space-y-1">
+                    {categories.map((cat) => (
+                      <button
+                        key={cat}
+                        onClick={() => {
+                          setActiveCategory(cat);
+                          setActiveSubCategory("");
+                        }}
+                        className={`w-full text-left px-3 py-1.5 text-sm rounded-lg transition ${
+                          activeCategory === cat
+                            ? "bg-blue-50 text-blue-600 font-medium"
+                            : "text-gray-600 hover:bg-gray-50"
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* SubCategory Filter (if category selected) */}
+                {activeCategory !== "Semua" && subCategories[activeCategory] && (
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-700 mb-2 mt-4 pt-3 border-t border-gray-100">
+                      Sub Kategori
+                    </h4>
+                    <div className="space-y-1">
+                      <button
+                        onClick={() => setActiveSubCategory("")}
+                        className={`w-full text-left px-3 py-1.5 text-sm rounded-lg transition ${
+                          activeSubCategory === ""
+                            ? "bg-blue-50 text-blue-600 font-medium"
+                            : "text-gray-600 hover:bg-gray-50"
+                        }`}
+                      >
+                        Semua
+                      </button>
+                      {subCategories[activeCategory].map((sub) => (
+                        <button
+                          key={sub}
+                          onClick={() => setActiveSubCategory(sub)}
+                          className={`w-full text-left px-3 py-1.5 text-sm rounded-lg transition ${
+                            activeSubCategory === sub
+                              ? "bg-blue-50 text-blue-600 font-medium"
+                              : "text-gray-600 hover:bg-gray-50"
+                          }`}
+                        >
+                          {sub}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Reset Filter */}
+                {(activeCategory !== "Semua" || activeSubCategory) && (
+                  <button
+                    onClick={() => {
+                      setActiveCategory("Semua");
+                      setActiveSubCategory("");
+                    }}
+                    className="w-full mt-4 pt-3 border-t border-gray-100 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    Reset Filter
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Products Grid */}
+            <div className="flex-1">
+              {filteredProducts.length > 0 ? (
+                <>
+                  {/* Active Filters Display */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {activeCategory !== "Semua" && (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">
+                        Kategori: {activeCategory}
+                        <button
+                          onClick={() => setActiveCategory("Semua")}
+                          className="ml-1 hover:text-blue-900"
+                        >
+                          ×
+                        </button>
+                      </span>
+                    )}
+                    {activeSubCategory && (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">
+                        Sub: {activeSubCategory}
+                        <button
+                          onClick={() => setActiveSubCategory("")}
+                          className="ml-1 hover:text-blue-900"
+                        >
+                          ×
+                        </button>
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredProducts.map((product, index) => (
+                      <ProductCard key={product.id} product={product} index={index} />
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="text-center py-12 bg-gray-50 rounded-xl">
+                  <p className="text-gray-500">Tidak ada produk dalam kategori ini</p>
+                  <button
+                    onClick={() => {
+                      setActiveCategory("Semua");
+                      setActiveSubCategory("");
+                    }}
+                    className="mt-3 text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    Lihat semua produk
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </Container>
       </section>
     </>
+  );
+}
+
+// Main component with Suspense
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-500">Loading products...</p>
+        </div>
+      </div>
+    }>
+      <ProductsContent />
+    </Suspense>
   );
 }
