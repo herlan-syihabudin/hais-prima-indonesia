@@ -1,3 +1,4 @@
+// src/components/home/ProductHighlights.tsx
 "use client";
 
 import { useState } from "react";
@@ -8,13 +9,13 @@ import Button from "@/components/ui/Button";
 import { products } from "@/data/products";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Update categories sesuai dengan data products.ts
 const categories = [
   "Semua",
-  "Besi Beton",
-  "Hollow",
-  "WF/H-Beam",
-  "Wiremesh",
-  "Plat Besi",
+  "Material Steel",
+  "Material SUS",
+  "Warehouse Racking",
+  "Atap UPVC",
 ];
 
 export default function ProductHighlights() {
@@ -59,9 +60,15 @@ export default function ProductHighlights() {
             transition={{ duration: 0.3 }}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {filteredProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
-            ))}
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product, index) => (
+                <ProductCard key={product.id} product={product} index={index} />
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-12 text-gray-500">
+                Tidak ada produk dalam kategori ini
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
 
