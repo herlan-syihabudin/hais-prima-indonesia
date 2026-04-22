@@ -21,6 +21,10 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
 
+  // Nomor WhatsApp yang benar
+  const whatsappNumber = "6281326097800";
+  const whatsappMessage = "Halo, saya tertarik dengan produk besi dan baja dari PT Hais Prima Indonesia";
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -123,9 +127,9 @@ export default function Header() {
                 <FaSearch size={18} />
               </button>
 
-              {/* Contact Button */}
+              {/* WhatsApp Button - UPDATED with correct number */}
               <a
-                href="https://wa.me/6281234567890"
+                href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
@@ -179,7 +183,7 @@ export default function Header() {
           )}
         </AnimatePresence>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Menu - UPDATED with correct number */}
         <AnimatePresence>
           {isOpen && (
             <motion.nav
@@ -204,7 +208,7 @@ export default function Header() {
                 ))}
                 <div className="pt-4 mt-4 border-t border-gray-100">
                   <a
-                    href="https://wa.me/6281234567890"
+                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 w-full bg-green-500 text-white px-4 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
