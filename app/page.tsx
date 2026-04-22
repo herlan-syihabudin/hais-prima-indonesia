@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 
 import Hero from "@/components/home/Hero";
@@ -12,11 +11,11 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <BusinessLines />        {/* Langsung tampilkan 3 lini bisnis */}
-      <ProductHighlights />    {/* Preview produk unggulan */}
-      <WhyChooseUs />          {/* Kenapa pilih kami */}
-      <ProjectPreview />       {/* Portfolio proyek */}
-      <CTASection />          {/* Hubungi kami */}
+      <BusinessLines />
+      <ProductHighlights />
+      <WhyChooseUs />
+      <ProjectPreview />
+      <CTASection />
     </>
   );
 }
