@@ -4,6 +4,11 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAl
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   
+  // Nomor WhatsApp yang benar
+  const whatsappNumber = "6281326097800";
+  const phoneNumber = "6281326097800";
+  const emailAddress = "info@haisprima.com";
+
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-6">
       <div className="container-custom">
@@ -14,6 +19,17 @@ export default function Footer() {
             <p className="text-gray-400 text-sm leading-relaxed">
               Supplier besi dan baja terpercaya untuk pembangunan Indonesia.
             </p>
+            <div className="flex gap-3 mt-4">
+              <a href="#" className="text-gray-400 hover:text-white transition text-lg">
+                <FaFacebook />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition text-lg">
+                <FaInstagram />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition text-lg">
+                <FaLinkedin />
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -24,57 +40,81 @@ export default function Footer() {
               <li><Link href="/products" className="text-gray-400 hover:text-white transition">Produk</Link></li>
               <li><Link href="/projects" className="text-gray-400 hover:text-white transition">Proyek</Link></li>
               <li><Link href="/contact" className="text-gray-400 hover:text-white transition">Kontak</Link></li>
+              <li><Link href="/privacy" className="text-gray-400 hover:text-white transition">Kebijakan Privasi</Link></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info - UPDATED with correct numbers */}
           <div>
-            <h4 className="font-semibold mb-4">Kontak</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li className="flex items-center gap-2">
-                <FaPhone className="text-xs" /> +62 21 1234 5678
+            <h4 className="font-semibold mb-4">Kontak Kami</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-center gap-3 text-gray-400 hover:text-green-400 transition group">
+                <FaWhatsapp className="text-green-500" />
+                <a 
+                  href={`https://wa.me/${whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green-400 transition"
+                >
+                  0813-2609-7800
+                </a>
               </li>
-              <li className="flex items-center gap-2">
-                <FaWhatsapp className="text-xs" /> +62 812 3456 7890
+              <li className="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition group">
+                <FaPhone className="text-blue-400" />
+                <a 
+                  href={`tel:${phoneNumber}`}
+                  className="hover:text-blue-400 transition"
+                >
+                  0813-2609-7800
+                </a>
               </li>
-              <li className="flex items-center gap-2">
-                <FaEnvelope className="text-xs" /> info@haisprima.com
+              <li className="flex items-center gap-3 text-gray-400 hover:text-red-400 transition group">
+                <FaEnvelope className="text-red-400" />
+                <a 
+                  href={`mailto:${emailAddress}`}
+                  className="hover:text-red-400 transition"
+                >
+                  info@haisprima.com
+                </a>
               </li>
             </ul>
           </div>
 
           {/* Address */}
           <div>
-            <h4 className="font-semibold mb-4">Alamat</h4>
+            <h4 className="font-semibold mb-4">Alamat Kantor</h4>
             <div className="text-sm text-gray-400 leading-relaxed">
-              <p className="flex items-start gap-2">
-                <FaMapMarkerAlt className="text-xs mt-0.5 flex-shrink-0" />
+              <p className="flex items-start gap-3">
+                <FaMapMarkerAlt className="text-red-400 mt-0.5 flex-shrink-0" />
                 <span>
                   Ruko CBP Galuh Mas Blok D No. 6D, Lt 2<br />
-                  Kelurahan Sukaharja, Kecamatan Teluk Jambe Timur<br />
+                  Kelurahan Sukaharja,<br />
+                  Kecamatan Teluk Jambe Timur,<br />
                   Kabupaten Karawang - Jawa Barat 41361
                 </span>
               </p>
             </div>
+            {/* Google Maps Link */}
+            <a 
+              href="https://maps.google.com/?q=Ruko+CBP+Galuh+Mas+Blok+D+No.+6D+Karawang"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-3 text-xs text-blue-400 hover:text-blue-300 transition"
+            >
+              <FaMapMarkerAlt size={10} />
+              Lihat di Google Maps →
+            </a>
           </div>
         </div>
 
-        {/* Social Media & Copyright */}
-        <div className="border-t border-gray-800 pt-6">
+        {/* Copyright */}
+        <div className="border-t border-gray-800 pt-6 mt-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex gap-4">
-              <a href="#" className="text-gray-400 hover:text-white transition text-xl">
-                <FaFacebook />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition text-xl">
-                <FaInstagram />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition text-xl">
-                <FaLinkedin />
-              </a>
-            </div>
-            <p className="text-gray-500 text-sm text-center">
+            <p className="text-gray-500 text-xs text-center">
               &copy; {currentYear} PT Hais Prima Indonesia. All rights reserved.
+            </p>
+            <p className="text-gray-600 text-xs text-center">
+              Supplier Besi & Baja Terpercaya di Karawang dan Sekitarnya
             </p>
           </div>
         </div>
