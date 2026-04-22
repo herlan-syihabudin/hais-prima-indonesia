@@ -7,6 +7,7 @@ import BusinessLines from "@/components/home/BusinessLines";
 import ProductHighlights from "@/components/home/ProductHighlights";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import ProjectPreview from "@/components/home/ProjectPreview";
+import TestimonialSection from "@/components/home/TestimonialSection";
 import CTASection from "@/components/home/CTASection";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
       <ProductHighlights />
       <WhyChooseUs />
       <ProjectPreview />
+      <TestimonialSection />
       <CTASection />
     </>
   );
