@@ -1,96 +1,139 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaPlay, FaChartLine, FaTruck } from "react-icons/fa";
+import { FaCheckCircle, FaIndustry, FaShieldAlt, FaBoxes } from "react-icons/fa";
 
 export default function Hero() {
   const [stats] = useState([
-    { label: "Tahun Berdiri", value: "2015", suffix: "", icon: FaChartLine },
-    { label: "Proyek Selesai", value: "500+", suffix: "", icon: FaTruck },
-    { label: "Klien Puas", value: "98%", suffix: "", icon: FaPlay },
+    { label: "Established", value: "2015", icon: FaIndustry },
+    { label: "Projects Delivered", value: "500+", icon: FaBoxes },
+    { label: "Client Satisfaction", value: "98%", icon: FaCheckCircle },
   ]);
+
+  const capabilities = [
+    "Steel & Structural Materials Supply (WF, H-Beam, Plate, Pipe)",
+    "Stainless Steel & Industrial Piping System",
+    "Fitting, Flange & Industrial Components",
+    "Warehouse Racking System Solutions",
+  ];
+
+  const trustPoints = [
+    "SNI & International Standard Material Supply",
+    "Project-Based Procurement Support",
+    "Industrial, Commercial & Infrastructure Scope",
+  ];
 
   return (
     <section className="relative min-h-screen flex items-center">
-      {/* Background dengan overlay gradien */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-besi.jpg"
-          alt="Supplier besi dan baja terpercaya"
+          alt="Industrial Steel Supply"
           fill
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
       </div>
 
       <Container>
-        <div className="relative z-10 max-w-4xl text-white">
+        <div className="relative z-10 max-w-5xl text-white">
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-blue-600/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-blue-400/30">
+
+            {/* Brand Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-5 py-2 mb-6 border border-white/15">
               <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-              <span className="text-sm font-medium tracking-wide">
-                LEADING STEEL SUPPLIER IN INDONESIA
+              <span className="text-sm tracking-widest font-medium text-gray-200">
+                PT HAIS PRIMA INDONESIA
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4">
-              Supplier Besi & Baja
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              Integrated Industrial
+              <span className="block text-blue-400">
+                Steel & Material Solutions
+              </span>
             </h1>
 
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-              #1 Terpercaya di Indonesia
+            {/* Sub Heading */}
+            <h2 className="text-xl md:text-2xl mt-4 text-gray-300 max-w-3xl">
+              Reliable supply partner for construction, industrial, and infrastructure projects across Indonesia
             </h2>
 
-            <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl leading-relaxed">
-              Mitra strategis untuk proyek infrastruktur, gedung bertingkat, 
-              dan konstruksi berat dengan standar kualitas SNI & internasional.
+            {/* Description */}
+            <p className="mt-6 text-gray-300 max-w-2xl leading-relaxed">
+              We provide end-to-end material supply solutions including steel, stainless steel, piping system, 
+              and industrial components with consistent quality, project reliability, and technical support.
             </p>
 
-            <div className="flex gap-4 flex-wrap mb-12">
-              <Button href="/products" size="lg" className="shadow-lg hover:shadow-xl">
-                Konsultasi Sekarang
+            {/* CTA */}
+            <div className="flex flex-wrap gap-4 mt-8">
+              <Button href="/contact" size="lg">
+                Request Quotation
               </Button>
-              <Button href="/contact" variant="outline" size="lg">
-                Hubungi Sales
+              <Button href="/divisions" variant="outline" size="lg">
+                Explore Capabilities
               </Button>
+            </div>
+
+            {/* Trust Highlights */}
+            <div className="grid md:grid-cols-3 gap-4 mt-10">
+              {trustPoints.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 text-sm text-gray-300"
+                >
+                  <FaShieldAlt className="text-blue-400 mt-1" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Capabilities */}
+            <div className="mt-10 border-t border-white/10 pt-6">
+              <h3 className="text-sm tracking-widest text-gray-400 mb-4">
+                CORE CAPABILITIES
+              </h3>
+
+              <div className="grid md:grid-cols-2 gap-3">
+                {capabilities.map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-gray-200 text-sm">
+                    <FaCheckCircle className="text-blue-400" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 md:gap-8 max-w-2xl">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  className="text-center md:text-left"
-                >
-                  <stat.icon className="text-2xl md:text-3xl text-blue-400 mx-auto md:mx-0 mb-2" />
-                  <div className="text-2xl md:text-3xl font-bold">{stat.value}</div>
-                  <div className="text-sm text-gray-300">{stat.label}</div>
-                </motion.div>
+            <div className="grid grid-cols-3 gap-6 mt-10">
+              {stats.map((stat, i) => (
+                <div key={i} className="text-left">
+                  <stat.icon className="text-blue-400 text-xl mb-2" />
+                  <div className="text-2xl md:text-3xl font-bold">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wide">
+                    {stat.label}
+                  </div>
+                </div>
               ))}
             </div>
+
           </motion.div>
         </div>
       </Container>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-ping"></div>
-        </div>
-      </div>
     </section>
   );
 }
