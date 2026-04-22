@@ -71,7 +71,6 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
   const whatsappNumber = "6281326097800";
@@ -190,27 +189,29 @@ export default function Header() {
                       </div>
                     </>
                   ) : (
-                    <Link
-                      href={link.href}
-                      className={`relative font-medium transition-all duration-300 ${
-                        pathname === link.href
-                          ? isScrolled ? "text-primary" : "text-white"
-                          : isScrolled ? "text-gray-700 hover:text-primary" : "text-gray-200 hover:text-white"
-                      }`}
-                    >
-                      {link.label}
-                      {pathname === link.href && (
-                        <motion.div
-                          layoutId="activeNav"
-                          className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
-                            isScrolled ? "bg-primary" : "bg-blue-400"
-                          }`}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                      )}
-                    </Link>
+                    link.href && (
+                      <Link
+                        href={link.href}
+                        className={`relative font-medium transition-all duration-300 ${
+                          pathname === link.href
+                            ? isScrolled ? "text-primary" : "text-white"
+                            : isScrolled ? "text-gray-700 hover:text-primary" : "text-gray-200 hover:text-white"
+                        }`}
+                      >
+                        {link.label}
+                        {pathname === link.href && (
+                          <motion.div
+                            layoutId="activeNav"
+                            className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
+                              isScrolled ? "bg-primary" : "bg-blue-400"
+                            }`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        )}
+                      </Link>
+                    )
                   )}
                 </div>
               ))}
@@ -289,7 +290,7 @@ export default function Header() {
           )}
         </AnimatePresence>
 
-        {/* Mobile Navigation Menu with Accordion */}
+        {/* Mobile Navigation Menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.nav
@@ -305,15 +306,17 @@ export default function Header() {
                     {link.hasDropdown ? (
                       <MobileDropdown item={link} pathname={pathname} setIsOpen={setIsOpen} />
                     ) : (
-                      <Link
-                        href={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className={`block py-3 font-medium transition-colors hover:text-primary ${
-                          pathname === link.href ? "text-primary" : "text-gray-700"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
+                      link.href && (
+                        <Link
+                          href={link.href}
+                          onClick={() => setIsOpen(false)}
+                          className={`block py-3 font-medium transition-colors hover:text-primary ${
+                            pathname === link.href ? "text-primary" : "text-gray-700"
+                          }`}
+                        >
+                          {link.label}
+                        </Link>
+                      )
                     )}
                   </div>
                 ))}
@@ -354,7 +357,7 @@ function MobileDropdown({ item, pathname, setIsOpen }: { item: any; pathname: st
         <FaChevronDown className={`transform transition-transform ${isExpanded ? "rotate-180" : ""}`} size={12} />
       </button>
       {isExpanded && (
-        <div className="pl-4 pb-3 space-y-2">
+        <div className="pl-4 pb-3 space-y-3">
           {item.dropdown.map((subItem: any) => (
             <div key={subItem.title} className="space-y-1">
               <Link
