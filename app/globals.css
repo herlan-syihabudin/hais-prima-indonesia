@@ -183,3 +183,8 @@ html {
 .stat-value {
   animation: countUp 0.6s ease-out forwards;
 }
+
+ /* Hide scrollbar for category bar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
