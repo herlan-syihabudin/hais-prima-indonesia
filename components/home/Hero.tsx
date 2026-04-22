@@ -51,13 +51,6 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Brand Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-5 py-2 mb-6 border border-white/15">
-              <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-              <span className="text-sm tracking-widest font-medium text-gray-200">
-                PT HAIS PRIMA INDONESIA
-              </span>
-            </div>
 
             {/* Main Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
