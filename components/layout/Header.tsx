@@ -1,3 +1,4 @@
+// src/components/layout/Header.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -94,13 +95,18 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
+  // Determine if we're on home page (hero has dark background)
+  const isHomePage = pathname === "/";
+  // Background becomes solid sooner on homepage
+  const shouldShowSolid = isScrolled || !isHomePage;
+
   return (
     <>
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-          isScrolled 
-            ? "bg-white/95 backdrop-blur-md shadow-lg py-2" 
-            : "bg-gradient-to-b from-black/30 to-transparent py-5"
+          shouldShowSolid 
+            ? "bg-white shadow-lg py-2" 
+            : "bg-gradient-to-b from-black/60 to-transparent py-5"
         }`}
       >
         <div className="container-custom">
@@ -111,27 +117,27 @@ export default function Header() {
                 <Image 
                   src="/images/logo.png" 
                   alt="Logo" 
-                  width={isScrolled ? 45 : 50} 
-                  height={isScrolled ? 45 : 50}
+                  width={shouldShowSolid ? 45 : 50} 
+                  height={shouldShowSolid ? 45 : 50}
                   className="transition-all duration-300"
                 />
                 <div className="absolute -inset-1 bg-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="flex flex-col">
                 <span className={`font-bold text-lg md:text-xl transition-all duration-300 ${
-                  isScrolled ? "text-gray-800" : "text-white"
+                  shouldShowSolid ? "text-gray-800" : "text-white"
                 }`}>
                   Hais Prima Indonesia
                 </span>
                 <span className={`text-xs hidden md:block transition-all duration-300 ${
-                  isScrolled ? "text-gray-500" : "text-blue-200"
+                  shouldShowSolid ? "text-gray-500" : "text-blue-100"
                 }`}>
                   Supplier Besi & Baja Terpercaya
                 </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation with Dropdown */}
+            {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-6">
               {navLinks.map((link) => (
                 <div key={link.label} className="relative group">
@@ -139,11 +145,11 @@ export default function Header() {
                     <>
                       <button
                         className={`relative font-medium transition-all duration-300 flex items-center gap-1 ${
-                          isScrolled ? "text-gray-700 hover:text-primary" : "text-gray-200 hover:text-white"
+                          shouldShowSolid ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-200"
                         }`}
                       >
                         {link.label}
-                        <FaChevronDown size={12} className="group-hover:rotate-180 transition-transform duration-300" />
+                        <FaChevronDown size={12} className={`transition-transform duration-300 group-hover:rotate-180 ${shouldShowSolid ? "text-gray-400" : "text-white/70"}`} />
                       </button>
                       
                       {/* Mega Dropdown Menu */}
@@ -168,7 +174,7 @@ export default function Header() {
                                   <Link
                                     key={sub.label}
                                     href={sub.href}
-                                    className="block px-4 py-1.5 text-sm text-gray-600 hover:text-primary hover:bg-blue-50 rounded-lg transition"
+                                    className="block px-4 py-1.5 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition"
                                   >
                                     {sub.label}
                                   </Link>
@@ -180,7 +186,7 @@ export default function Header() {
                         <div className="border-t border-gray-100 p-4 bg-gray-50 rounded-b-2xl">
                           <Link 
                             href="/products" 
-                            className="flex items-center justify-between text-primary font-semibold hover:gap-2 transition-all"
+                            className="flex items-center justify-between text-blue-600 font-semibold hover:gap-2 transition-all"
                           >
                             <span>Lihat Semua Produk</span>
                             <span>→</span>
@@ -194,17 +200,15 @@ export default function Header() {
                         href={link.href}
                         className={`relative font-medium transition-all duration-300 ${
                           pathname === link.href
-                            ? isScrolled ? "text-primary" : "text-white"
-                            : isScrolled ? "text-gray-700 hover:text-primary" : "text-gray-200 hover:text-white"
+                            ? shouldShowSolid ? "text-blue-600" : "text-white border-b-2 border-blue-400"
+                            : shouldShowSolid ? "text-gray-700 hover:text-blue-600" : "text-white/90 hover:text-white"
                         }`}
                       >
                         {link.label}
-                        {pathname === link.href && (
+                        {pathname === link.href && shouldShowSolid && (
                           <motion.div
                             layoutId="activeNav"
-                            className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
-                              isScrolled ? "bg-primary" : "bg-blue-400"
-                            }`}
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.3 }}
@@ -223,7 +227,9 @@ export default function Header() {
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className={`p-2 rounded-full transition-all duration-300 ${
-                  isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"
+                  shouldShowSolid 
+                    ? "text-gray-600 hover:bg-gray-100" 
+                    : "text-white hover:bg-white/10"
                 }`}
               >
                 <FaSearch size={18} />
@@ -235,9 +241,9 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
-                  isScrolled
+                  shouldShowSolid
                     ? "bg-green-500 text-white hover:bg-green-600 shadow-md"
-                    : "bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 border border-white/20"
+                    : "bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30"
                 }`}
               >
                 <FaWhatsapp size={16} />
@@ -248,7 +254,9 @@ export default function Header() {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
-                  isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"
+                  shouldShowSolid 
+                    ? "text-gray-700 hover:bg-gray-100" 
+                    : "text-white hover:bg-white/10"
                 }`}
               >
                 {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -271,19 +279,19 @@ export default function Header() {
                   <input
                     type="text"
                     placeholder="Cari produk: Plate, WF, Pipa Seamless, Racking, Atap UPVC..."
-                    className="w-full px-5 py-3 pr-12 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+                    className="w-full px-5 py-3 pr-12 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                     autoFocus
                   />
-                  <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
+                  <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600">
                     <FaSearch size={18} />
                   </button>
                 </div>
                 <div className="flex gap-4 mt-3 text-xs text-gray-400">
                   <span>Populer:</span>
-                  <Link href="/products?category=Material+Steel&sub=WF" className="hover:text-primary">WF Beam</Link>
-                  <Link href="/products?category=Material+Steel&sub=Seamless" className="hover:text-primary">Pipa Seamless</Link>
-                  <Link href="/products?category=Warehouse+Racking" className="hover:text-primary">Pallet Racking</Link>
-                  <Link href="/products?category=Atap+UPVC" className="hover:text-primary">Atap UPVC</Link>
+                  <Link href="/products?category=Material+Steel&sub=WF" className="hover:text-blue-600">WF Beam</Link>
+                  <Link href="/products?category=Material+Steel&sub=Seamless" className="hover:text-blue-600">Pipa Seamless</Link>
+                  <Link href="/products?category=Warehouse+Racking" className="hover:text-blue-600">Pallet Racking</Link>
+                  <Link href="/products?category=Atap+UPVC" className="hover:text-blue-600">Atap UPVC</Link>
                 </div>
               </div>
             </motion.div>
@@ -310,8 +318,8 @@ export default function Header() {
                         <Link
                           href={link.href}
                           onClick={() => setIsOpen(false)}
-                          className={`block py-3 font-medium transition-colors hover:text-primary ${
-                            pathname === link.href ? "text-primary" : "text-gray-700"
+                          className={`block py-3 font-medium transition-colors hover:text-blue-600 ${
+                            pathname === link.href ? "text-blue-600" : "text-gray-700"
                           }`}
                         >
                           {link.label}
@@ -351,7 +359,7 @@ function MobileDropdown({ item, pathname, setIsOpen }: { item: any; pathname: st
     <div className="border-b border-gray-100 last:border-0">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between w-full py-3 font-medium text-gray-700 hover:text-primary transition"
+        className="flex items-center justify-between w-full py-3 font-medium text-gray-700 hover:text-blue-600 transition"
       >
         <span>{item.label}</span>
         <FaChevronDown className={`transform transition-transform ${isExpanded ? "rotate-180" : ""}`} size={12} />
@@ -363,7 +371,7 @@ function MobileDropdown({ item, pathname, setIsOpen }: { item: any; pathname: st
               <Link
                 href={subItem.href}
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-sm font-semibold text-gray-800 hover:text-primary"
+                className="block py-2 text-sm font-semibold text-gray-800 hover:text-blue-600"
               >
                 {subItem.title}
               </Link>
@@ -373,7 +381,7 @@ function MobileDropdown({ item, pathname, setIsOpen }: { item: any; pathname: st
                     key={sub.label}
                     href={sub.href}
                     onClick={() => setIsOpen(false)}
-                    className="block py-1.5 text-sm text-gray-600 hover:text-primary"
+                    className="block py-1.5 text-sm text-gray-600 hover:text-blue-600"
                   >
                     {sub.label}
                   </Link>
