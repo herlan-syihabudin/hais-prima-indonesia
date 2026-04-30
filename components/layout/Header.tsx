@@ -74,7 +74,7 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
 
-  const whatsappNumber = "6281326097800";
+  const whatsappNumber = "6281188801198";
   const whatsappMessage = "Halo, saya tertarik dengan produk besi dan baja dari PT Hais Prima Indonesia";
 
   useEffect(() => {
