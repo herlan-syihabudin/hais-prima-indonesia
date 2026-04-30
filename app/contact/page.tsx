@@ -1,5 +1,4 @@
-// src/app/contact/page.tsx
-// HAPUS "use client" di baris pertama
+"use client";
 
 import Container from "@/components/ui/Container";
 import ContactForm from "@/components/shared/ContactForm";
@@ -17,10 +16,8 @@ import {
   FaHeadset
 } from "react-icons/fa";
 
-// HAPUS export const metadata dari sini (pindah ke layout.tsx)
-
 export default function ContactPage() {
-  const whatsappNumber = "6281188801198";
+  const whatsappNumber = "081188801198";
   const phoneNumber = "6281188801198";
   const emailAddress = "info@haisindonesia.com";
 
@@ -76,7 +73,7 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section - FIXED */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <Container>
           <motion.div
@@ -206,7 +203,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Trust Badge */}
+              {/* Trust Badge - FIXED */}
               <div className="mt-6 p-3 bg-primary-50 rounded-lg border border-primary-100">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
