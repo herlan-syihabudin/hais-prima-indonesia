@@ -1,5 +1,7 @@
+// src/app/about/page.tsx
 "use client";
 
+import { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/shared/SectionTitle";
 import Image from "next/image";
@@ -18,6 +20,32 @@ import {
   FaIndustry,
   FaCheckCircle
 } from "react-icons/fa";
+
+// ========== METADATA UNTUK SEO ==========
+export const metadata: Metadata = {
+  title: "Tentang PT Hais Prima Indonesia - Supplier Besi Baja Terpercaya",
+  description: "Pelajari perjalanan dan komitmen PT Hais Prima Indonesia sebagai distributor besi baja, stainless steel, dan material industri terpercaya di Indonesia sejak 2015.",
+  keywords: "tentang kami, supplier besi baja, distributor besi, perusahaan besi karawang, profil perusahaan",
+  openGraph: {
+    title: "Tentang PT Hais Prima Indonesia - Supplier Besi Baja",
+    description: "Pelajari perjalanan dan komitmen PT Hais Prima Indonesia dalam menyediakan material industri berkualitas.",
+    url: "https://haisindonesia.com/about",
+    siteName: "PT Hais Prima Indonesia",
+    images: [
+      {
+        url: "https://haisindonesia.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PT Hais Prima Indonesia - Tentang Kami",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://haisindonesia.com/about",
+  },
+};
 
 export default function AboutPage() {
   const values = [
@@ -63,7 +91,7 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Hero Section - FIXED */}
+      {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <Container>
           <motion.div
@@ -83,7 +111,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Stats Section - FIXED */}
+      {/* Stats Section */}
       <section className="py-12 bg-gray-50 border-b border-gray-200">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -104,7 +132,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Company Profile */}
+      {/* Company Profile - dengan H2 */}
       <section className="section-padding">
         <Container>
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -118,7 +146,7 @@ export default function AboutPage() {
               <div className="relative rounded-xl overflow-hidden shadow-xl">
                 <Image
                   src="/images/about-warehouse.jpg"
-                  alt="Warehouse PT Hais Prima Indonesia"
+                  alt="Gudang PT Hais Prima Indonesia - Warehouse dengan kapasitas 5.000+ ton besi baja"
                   width={600}
                   height={400}
                   className="w-full h-auto"
@@ -142,17 +170,17 @@ export default function AboutPage() {
                 <FaBuilding className="text-primary-500 text-xs" />
                 <span className="text-xs font-semibold text-primary-600">PROFILE</span>
               </div>
+              {/* H2 untuk Company Profile */}
               <h2 className="text-3xl font-bold mb-4">PT Hais Prima Indonesia</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Didirikan pada tahun 2015, PT Hais Prima Indonesia telah menjadi salah satu
-                distributor besi, baja, dan material industri terkemuka di Indonesia. 
-                Kami berkomitmen untuk menyediakan material konstruksi berkualitas tinggi 
-                dengan harga yang kompetitif.
+                Didirikan pada tahun 2015, <strong className="text-primary-600">PT Hais Prima Indonesia</strong> telah menjadi salah satu
+                distributor <strong className="text-primary-600">besi baja</strong>, <strong className="text-primary-600">stainless steel</strong>, dan material industri terkemuka di Indonesia. 
+                Kami berkomitmen untuk menyediakan material konstruksi berkualitas tinggi dengan harga kompetitif.
               </p>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 Dengan pengalaman lebih dari 9 tahun, kami telah melayani 500+ proyek,
                 mulai dari pembangunan infrastruktur, gedung bertingkat, pabrik, 
-                hingga warehouse distribution center.
+                hingga warehouse distribution center di seluruh Indonesia.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 Visi kami adalah menjadi mitra terpercaya dalam pembangunan Indonesia melalui
@@ -181,7 +209,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Core Values */}
+      {/* Core Values - dengan H2 */}
       <section className="section-padding">
         <Container>
           <SectionTitle
@@ -209,7 +237,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* CTA Section - FIXED */}
+      {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
@@ -228,7 +256,7 @@ export default function AboutPage() {
                 href="/products"
                 className="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
               >
-                Lihat Produk
+                Lihat Produk Besi Baja
               </Link>
             </div>
           </div>
