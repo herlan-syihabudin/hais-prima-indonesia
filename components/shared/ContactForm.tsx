@@ -34,6 +34,9 @@ export default function ContactForm() {
     }
   };
 
+  // Nomor telepon konsisten dengan contact page
+  const phoneNumber = "0811-8880-1198";
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-8 rounded-2xl shadow-xl">
       <h2 className="text-2xl font-bold mb-2">Dapatkan Penawaran</h2>
@@ -47,7 +50,7 @@ export default function ContactForm() {
           <input
             {...register("name", { required: "Nama wajib diisi" })}
             placeholder="John Doe"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
           />
           {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
         </div>
@@ -59,7 +62,7 @@ export default function ContactForm() {
           <input
             {...register("company")}
             placeholder="PT. Contoh"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
           />
         </div>
       </div>
@@ -79,7 +82,7 @@ export default function ContactForm() {
               }
             })}
             placeholder="john@company.com"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
           />
           {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
         </div>
@@ -90,8 +93,8 @@ export default function ContactForm() {
           </label>
           <input
             {...register("phone", { required: "Telepon wajib diisi" })}
-            placeholder="0813-2609-7800"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+            placeholder={phoneNumber}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
           />
           {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
         </div>
@@ -101,7 +104,7 @@ export default function ContactForm() {
         <label className="block text-gray-700 mb-2 text-sm font-medium">Produk yang diminati</label>
         <select
           {...register("productInterest")}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500"
         >
           <option value="">Pilih produk</option>
           <option value="besi-beton">Besi Beton</option>
@@ -109,6 +112,10 @@ export default function ContactForm() {
           <option value="wf-beam">WF/H-Beam</option>
           <option value="wiremesh">Wiremesh</option>
           <option value="plat-besi">Plat Besi</option>
+          <option value="pipa-seamless">Pipa Seamless</option>
+          <option value="stainless">Stainless Steel</option>
+          <option value="racking">Warehouse Racking</option>
+          <option value="upvc">Atap UPVC</option>
         </select>
       </div>
 
@@ -118,7 +125,7 @@ export default function ContactForm() {
           {...register("message", { required: "Pesan wajib diisi" })}
           rows={4}
           placeholder="Ceritakan kebutuhan proyek Anda..."
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-200"
         />
         {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>}
       </div>
@@ -131,17 +138,31 @@ export default function ContactForm() {
 
       {submitStatus === "error" && (
         <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
-          ✗ Gagal mengirim pesan. Silakan hubungi via WhatsApp.
+          ✗ Gagal mengirim pesan. Silakan hubungi via WhatsApp di {phoneNumber}.
         </div>
       )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition shadow-lg disabled:opacity-50"
+        className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-3 rounded-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition shadow-lg disabled:opacity-50"
       >
         {isSubmitting ? "Mengirim..." : "Kirim Permintaan"}
       </button>
+
+      {/* WhatsApp Alternative CTA */}
+      <div className="mt-4 text-center">
+        <p className="text-xs text-gray-500 mb-2">Atau hubungi langsung via WhatsApp</p>
+        <a
+          href={`https://wa.me/${phoneNumber.replace(/-/g, "")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-sm text-green-600 hover:text-green-700 font-medium"
+        >
+          <FaWhatsapp size={16} />
+          Chat via WhatsApp
+        </a>
+      </div>
 
       <p className="text-center text-xs text-gray-500 mt-4">
         Tim kami akan merespon dalam waktu 1x24 jam
