@@ -13,14 +13,17 @@ export default function SteelDivisionPage() {
 
   return (
     <>
-      {/* Header */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+      {/* Header - FIXED */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16">
         <Container>
-          <Link href="/" className="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-4">
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 text-primary-200 hover:text-white transition-colors mb-4"
+          >
             <FaArrowLeft size={14} /> Kembali ke Beranda
           </Link>
           <h1 className="text-4xl font-bold">Material Steel & SUS</h1>
-          <p className="text-blue-100 mt-2">Distributor bersertifikat carbon steel & stainless steel</p>
+          <p className="text-primary-100 mt-2">Distributor bersertifikat carbon steel & stainless steel</p>
         </Container>
       </section>
 
