@@ -10,7 +10,7 @@ import Link from "next/link";
 import { products } from "@/data/products";
 import { notFound } from "next/navigation";
 
-// Data tabel besi
+// Data tabel besi (tetap sama)
 const steelTables: Record<string, any> = {
   "WF Beam SS400": {
     title: "Dimensi & Berat WF Beam",
@@ -98,13 +98,13 @@ export default function ProductDetailPage() {
 
   return (
     <>
-      {/* Breadcrumb */}
+      {/* Breadcrumb - FIXED */}
       <div className="bg-gray-100 py-3">
         <Container>
           <div className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-gray-500 hover:text-blue-600">Beranda</Link>
+            <Link href="/" className="text-gray-500 hover:text-primary-500 transition-colors">Beranda</Link>
             <span className="text-gray-400">/</span>
-            <Link href="/products" className="text-gray-500 hover:text-blue-600">Produk</Link>
+            <Link href="/products" className="text-gray-500 hover:text-primary-500 transition-colors">Produk</Link>
             <span className="text-gray-400">/</span>
             <span className="text-gray-800 font-medium">{product.name}</span>
           </div>
@@ -130,18 +130,19 @@ export default function ProductDetailPage() {
             {/* Product Info */}
             <div>
               <div className="mb-4">
-                <span className="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-1 rounded mb-2">
+                {/* Category Badge - FIXED */}
+                <span className="inline-block bg-primary-50 text-primary-600 text-xs font-semibold px-2 py-1 rounded mb-2">
                   {product.category} / {product.subCategory}
                 </span>
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800">{product.name}</h1>
               </div>
 
-              {/* Price */}
-              <div className="bg-blue-50 p-4 rounded-xl mb-6">
+              {/* Price Section - FIXED */}
+              <div className="bg-primary-50 p-4 rounded-xl mb-6">
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div>
                     <p className="text-sm text-gray-500">Harga</p>
-                    <p className="text-2xl font-bold text-blue-600">{product.price}</p>
+                    <p className="text-2xl font-bold text-primary-600">{product.price}</p>
                     <p className="text-xs text-gray-400">*Harga dapat berubah sesuai volume pemesanan</p>
                   </div>
                   <a
@@ -156,13 +157,13 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              {/* Tabs */}
+              {/* Tabs - FIXED */}
               <div className="flex gap-4 border-b mb-6">
                 <button
                   onClick={() => setActiveTab("specs")}
                   className={`pb-2 px-1 font-medium transition-all ${
                     activeTab === "specs"
-                      ? "text-blue-600 border-b-2 border-blue-600"
+                      ? "text-primary-500 border-b-2 border-primary-500"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
@@ -173,7 +174,7 @@ export default function ProductDetailPage() {
                     onClick={() => setActiveTab("table")}
                     className={`pb-2 px-1 font-medium transition-all ${
                       activeTab === "table"
-                        ? "text-blue-600 border-b-2 border-blue-600"
+                        ? "text-primary-500 border-b-2 border-primary-500"
                         : "text-gray-500 hover:text-gray-700"
                     }`}
                   >
