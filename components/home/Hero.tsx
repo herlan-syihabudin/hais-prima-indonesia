@@ -14,7 +14,6 @@ export default function Hero() {
     { label: "Kepuasan Klien", value: "98%", icon: FaCheckCircle },
   ]);
 
-  // LENGKAP 6 LAYANAN
   const capabilities = [
     "Material Besi & Baja (WF, H-Beam, Plate, Siku, UNP, Pipa Besi, Pipa Galv)",
     "Material Stainless Steel SUS 304 (Plate, Pipa, Siku, UNP)",
@@ -32,16 +31,17 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center">
-      {/* Background */}
+      {/* Background - lebih terang */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-besi-1.jpg"
           alt="Supplier Material Konstruksi & Industri"
           fill
-          className="object-cover"
+          className="object-cover brightness-90"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50" />
+        {/* Gradient lebih terang */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/30" />
       </div>
 
       <Container>
@@ -51,18 +51,17 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-
             {/* Main Headline */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
               Integrated Steel &
-              <span className="block text-blue-400">
+              <span className="block text-cyan-400">
                  Industrial Supply Solutions
               </span>
             </h1>
 
             {/* Sub Headline */}
-            <h2 className="text-xl md:text-2xl mt-4 text-gray-300 max-w-3xl">
-              Mitra pengadaan bergerak dibidang All steel Matrial, Stainless Steel, Warehouse Racking Provider, dan Atap industri untuk kebutuhan proyek skala kecil hingga besar
+            <h2 className="text-xl md:text-2xl mt-4 text-gray-200 max-w-3xl">
+              Mitra pengadaan bergerak dibidang All steel Material, Stainless Steel, Warehouse Racking Provider, dan Atap industri untuk kebutuhan proyek skala kecil hingga besar
             </h2>
 
             {/* CTA Buttons */}
@@ -75,40 +74,40 @@ export default function Hero() {
               </Button>
             </div>
 
-            {/* Trust Points */}
+            {/* Trust Points - background lebih transparan */}
             <div className="grid md:grid-cols-3 gap-4 mt-10">
               {trustPoints.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 text-sm text-gray-300">
-                  <FaShieldAlt className="text-blue-400 mt-0.5 flex-shrink-0" />
+                <div key={i} className="flex items-start gap-3 text-sm text-gray-200 bg-white/5 backdrop-blur-sm p-3 rounded-lg">
+                  <FaShieldAlt className="text-cyan-400 mt-0.5 flex-shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
             </div>
 
             {/* Core Capabilities */}
-            <div className="mt-10 border-t border-white/10 pt-6">
-              <h3 className="text-sm tracking-widest text-gray-400 mb-4">
+            <div className="mt-10 border-t border-white/20 pt-6">
+              <h3 className="text-sm tracking-widest text-gray-300 mb-4">
                 LAYANAN & PRODUK KAMI
               </h3>
               <div className="grid md:grid-cols-2 gap-2">
                 {capabilities.map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-gray-200 text-sm">
-                    <FaCheckCircle className="text-blue-400 flex-shrink-0" />
+                  <div key={i} className="flex items-center gap-2 text-gray-200 text-sm bg-white/5 backdrop-blur-sm p-2 rounded-lg">
+                    <FaCheckCircle className="text-cyan-400 flex-shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Stats */}
+            {/* Stats - lebih elegan */}
             <div className="grid grid-cols-3 gap-6 mt-10">
               {stats.map((stat, i) => (
-                <div key={i} className="text-left">
-                  <stat.icon className="text-blue-400 text-xl mb-2" />
-                  <div className="text-2xl md:text-3xl font-bold">
+                <div key={i} className="text-left bg-white/10 backdrop-blur-sm p-4 rounded-xl">
+                  <stat.icon className="text-cyan-400 text-2xl mb-2" />
+                  <div className="text-2xl md:text-3xl font-bold text-white">
                     {stat.value}
                   </div>
-                  <div className="text-xs text-gray-400 uppercase tracking-wide">
+                  <div className="text-xs text-gray-300 uppercase tracking-wide">
                     {stat.label}
                   </div>
                 </div>
