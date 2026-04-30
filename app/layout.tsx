@@ -1,3 +1,5 @@
+// layout.tsx yang sudah diperbaiki
+
 import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
@@ -9,16 +11,12 @@ import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 const inter = Inter({ 
   subsets: ["latin"],
   display: "swap",
-  preload: true,
-  fallback: ["system-ui", "Arial", "sans-serif"],
 });
 
 // Playfair Display untuk headings
 const playfair = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
-  preload: true,
-  fallback: ["Georgia", "serif"],
 });
 
 export const metadata: Metadata = {
@@ -53,7 +51,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${inter.variable} ${playfair.variable}`}>
+    // HAPUS .variable
+    <html lang="id">
       <body className={`${inter.className} antialiased`}>
         <Header />
         <main className="min-h-screen">{children}</main>
