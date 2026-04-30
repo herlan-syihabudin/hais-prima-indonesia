@@ -1,7 +1,6 @@
 // src/app/contact/page.tsx
-"use client";
+// HAPUS "use client" di baris pertama
 
-import { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import ContactForm from "@/components/shared/ContactForm";
 import { motion } from "framer-motion";
@@ -18,31 +17,7 @@ import {
   FaHeadset
 } from "react-icons/fa";
 
-// ========== METADATA UNTUK SEO ==========
-export const metadata: Metadata = {
-  title: "Hubungi Kami - Konsultasi Besi Baja | PT Hais Prima Indonesia",
-  description: "Butuh penawaran harga atau konsultasi produk besi baja, stainless steel, warehouse racking, dan atap UPVC? Hubungi tim CS kami di Karawang. Respon cepat dalam 1x24 jam.",
-  keywords: "kontak, customer service, konsultasi besi baja, penawaran harga, alamat kantor karawang",
-  openGraph: {
-    title: "Hubungi PT Hais Prima Indonesia - Konsultasi Material Industri",
-    description: "Tim support kami siap membantu konsultasi teknis, permintaan penawaran, dan dukungan proyek Anda. Chat via WhatsApp atau kirim email.",
-    url: "https://haisindonesia.com/contact",
-    siteName: "PT Hais Prima Indonesia",
-    images: [
-      {
-        url: "https://haisindonesia.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "PT Hais Prima Indonesia - Kontak & Customer Support",
-      },
-    ],
-    locale: "id_ID",
-    type: "website",
-  },
-  alternates: {
-    canonical: "https://haisindonesia.com/contact",
-  },
-};
+// HAPUS export const metadata dari sini (pindah ke layout.tsx)
 
 export default function ContactPage() {
   const whatsappNumber = "6281188801198";
