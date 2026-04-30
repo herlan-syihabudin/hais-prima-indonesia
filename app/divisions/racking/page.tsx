@@ -12,13 +12,17 @@ export default function RackingDivisionPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16">
+      {/* Header - FIXED (konsisten dengan tema industrial) */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16">
         <Container>
-          <Link href="/" className="inline-flex items-center gap-2 text-purple-200 hover:text-white mb-4">
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 text-primary-200 hover:text-white transition-colors mb-4"
+          >
             <FaArrowLeft size={14} /> Kembali ke Beranda
           </Link>
           <h1 className="text-4xl font-bold">Warehouse Racking System</h1>
-          <p className="text-purple-100 mt-2">Solusi rak gudang profesional untuk bisnis Anda</p>
+          <p className="text-primary-100 mt-2">Solusi rak gudang profesional untuk bisnis Anda</p>
         </Container>
       </section>
 
