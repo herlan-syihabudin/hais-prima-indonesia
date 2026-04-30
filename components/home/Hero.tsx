@@ -62,7 +62,7 @@ export default function Hero() {
 
             {/* Sub Headline */}
             <h2 className="text-xl md:text-2xl mt-4 text-gray-300 max-w-3xl">
-              Mitra pengadaan material steel, stainless, sistem perpipaan, warehouse racking, dan atap industri untuk kebutuhan proyek skala kecil hingga besar
+              Mitra pengadaan bergerak dibidang All steel, stainless Steel, Warehouse Racking Provider, dan Atap industri untuk kebutuhan proyek skala kecil hingga besar
             </h2>
 
             {/* CTA Buttons */}
