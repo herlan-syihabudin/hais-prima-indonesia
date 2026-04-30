@@ -50,22 +50,22 @@ export default function TestimonialSection() {
           <h2 className="text-2xl font-bold text-gray-800 mt-1">Apa Kata Klien Kami</h2>
         </div>
 
-        {/* Testimonial Card Compact */}
+        {/* Testimonial Card Compact - FIXED */}
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            {/* Quote & Content */}
+            {/* Quote & Content - FIXED icon color */}
             <div className="flex gap-3">
-              <FaQuoteLeft className="text-blue-500/20 text-2xl flex-shrink-0" />
+              <FaQuoteLeft className="text-primary-500/20 text-2xl flex-shrink-0" />
               <p className="text-gray-600 text-sm leading-relaxed italic">
                 "{current.content}"
               </p>
             </div>
 
-            {/* Client Info & Rating */}
+            {/* Client Info & Rating - FIXED avatar colors */}
             <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-bold text-sm">
+                <div className="w-10 h-10 bg-primary-50 rounded-full flex items-center justify-center">
+                  <span className="text-primary-600 font-bold text-sm">
                     {current.name.charAt(0)}
                   </span>
                 </div>
@@ -82,7 +82,7 @@ export default function TestimonialSection() {
             </div>
           </div>
 
-          {/* Navigation Compact */}
+          {/* Navigation Compact - FIXED active dot color */}
           <div className="flex items-center justify-center gap-4 mt-4">
             <button
               onClick={prevTestimonial}
@@ -96,7 +96,7 @@ export default function TestimonialSection() {
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
                   className={`transition-all h-1 rounded-full ${
-                    idx === currentIndex ? "w-4 bg-blue-500" : "w-2 bg-gray-300"
+                    idx === currentIndex ? "w-4 bg-primary-500" : "w-2 bg-gray-300"
                   }`}
                 />
               ))}
