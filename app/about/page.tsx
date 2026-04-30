@@ -1,6 +1,4 @@
-// src/app/about/page.tsx
-// HAPUS "use client" di baris pertama
-// HAPUS import { Metadata } dari next
+"use client";
 
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/shared/SectionTitle";
@@ -20,10 +18,6 @@ import {
   FaIndustry,
   FaCheckCircle
 } from "react-icons/fa";
-
-// ========== METADATA UNTUK SEO ==========
-// HAPUS INI JUGA! Metadata gak bisa di Client Component
-// export const metadata: Metadata = { ... }
 
 export default function AboutPage() {
   const values = [
@@ -69,7 +63,7 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section - FIXED */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <Container>
           <motion.div
@@ -89,7 +83,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - FIXED */}
       <section className="py-12 bg-gray-50 border-b border-gray-200">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -124,7 +118,7 @@ export default function AboutPage() {
               <div className="relative rounded-xl overflow-hidden shadow-xl">
                 <Image
                   src="/images/about-warehouse.jpg"
-                  alt="Gudang PT Hais Prima Indonesia - Warehouse dengan kapasitas 5.000+ ton besi baja"
+                  alt="Warehouse PT Hais Prima Indonesia"
                   width={600}
                   height={400}
                   className="w-full h-auto"
@@ -150,14 +144,15 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl font-bold mb-4">PT Hais Prima Indonesia</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Didirikan pada tahun 2015, <strong className="text-primary-600">PT Hais Prima Indonesia</strong> telah menjadi salah satu
-                distributor <strong className="text-primary-600">besi baja</strong>, <strong className="text-primary-600">stainless steel</strong>, dan material industri terkemuka di Indonesia. 
-                Kami berkomitmen untuk menyediakan material konstruksi berkualitas tinggi dengan harga kompetitif.
+                Didirikan pada tahun 2015, PT Hais Prima Indonesia telah menjadi salah satu
+                distributor besi, baja, dan material industri terkemuka di Indonesia. 
+                Kami berkomitmen untuk menyediakan material konstruksi berkualitas tinggi 
+                dengan harga yang kompetitif.
               </p>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 Dengan pengalaman lebih dari 9 tahun, kami telah melayani 500+ proyek,
                 mulai dari pembangunan infrastruktur, gedung bertingkat, pabrik, 
-                hingga warehouse distribution center di seluruh Indonesia.
+                hingga warehouse distribution center.
               </p>
               <p className="text-gray-600 leading-relaxed">
                 Visi kami adalah menjadi mitra terpercaya dalam pembangunan Indonesia melalui
@@ -214,7 +209,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section - FIXED */}
       <section className="py-16 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
@@ -233,7 +228,7 @@ export default function AboutPage() {
                 href="/products"
                 className="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition"
               >
-                Lihat Produk Besi Baja
+                Lihat Produk
               </Link>
             </div>
           </div>
