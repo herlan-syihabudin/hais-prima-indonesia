@@ -73,8 +73,8 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      {/* Hero Section - FIXED */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -82,20 +82,20 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-4">
-              <FaHeadset className="text-blue-200 text-xs" />
-              <span className="text-xs tracking-wider">CUSTOMER SUPPORT</span>
+              <FaHeadset className="text-white/80 text-xs" />
+              <span className="text-xs tracking-wider text-white/90">CUSTOMER SUPPORT</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Hubungi Kami</h1>
-            <p className="text-lg text-blue-100 max-w-2xl">
+            <p className="text-lg text-primary-100 max-w-2xl">
               Tim kami siap membantu konsultasi teknis, permintaan penawaran, dan dukungan proyek Anda
             </p>
             <div className="flex flex-wrap gap-3 mt-6">
               <div className="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1.5">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                <span className="text-xs">CS Online</span>
+                <span className="text-xs text-white/90">CS Online</span>
               </div>
               <div className="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1.5">
-                <span className="text-xs">Response &lt; 5 menit</span>
+                <span className="text-xs text-white/90">Response &lt; 5 menit</span>
               </div>
             </div>
           </motion.div>
@@ -112,9 +112,9 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-3 py-1 mb-4">
-                <FaBuilding className="text-blue-600 text-xs" />
-                <span className="text-xs font-semibold text-blue-600">INFORMASI KONTAK</span>
+              <div className="inline-flex items-center gap-2 bg-primary-50 rounded-full px-3 py-1 mb-4">
+                <FaBuilding className="text-primary-500 text-xs" />
+                <span className="text-xs font-semibold text-primary-600">INFORMASI KONTAK</span>
               </div>
               <h2 className="text-2xl font-bold mb-6">Siap Membantu Anda</h2>
               
@@ -133,7 +133,7 @@ export default function ContactPage() {
                           href={info.link}
                           target={info.title.includes("Google") ? "_blank" : "_self"}
                           rel="noopener noreferrer"
-                          className="inline-block mt-2 text-blue-600 text-sm font-medium hover:text-blue-700"
+                          className="inline-block mt-2 text-primary-500 text-sm font-medium hover:text-primary-600"
                         >
                           {info.linkText}
                         </a>
@@ -191,27 +191,27 @@ export default function ContactPage() {
               <div className="mt-6 pt-4 border-t border-gray-200">
                 <h3 className="font-semibold text-gray-800 mb-3">Ikuti Kami</h3>
                 <div className="flex gap-4">
-                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-blue-600 hover:text-white transition">
+                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary-500 hover:text-white transition">
                     <FaFacebook size={18} />
                   </a>
                   <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-pink-600 hover:text-white transition">
                     <FaInstagram size={18} />
                   </a>
-                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-blue-700 hover:text-white transition">
+                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-primary-600 hover:text-white transition">
                     <FaLinkedin size={18} />
                   </a>
                 </div>
               </div>
 
-              {/* Trust Badge */}
-              <div className="mt-6 p-3 bg-blue-50 rounded-lg border border-blue-100">
+              {/* Trust Badge - FIXED */}
+              <div className="mt-6 p-3 bg-primary-50 rounded-lg border border-primary-100">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <FaHeadset className="text-blue-600 text-sm" />
+                  <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                    <FaHeadset className="text-primary-500 text-sm" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-blue-800">Fast Response Guarantee</p>
-                    <p className="text-xs text-blue-600">Tim CS online, balasan dalam &lt; 5 menit</p>
+                    <p className="text-sm font-semibold text-primary-800">Fast Response Guarantee</p>
+                    <p className="text-xs text-primary-600">Tim CS online, balasan dalam &lt; 5 menit</p>
                   </div>
                 </div>
               </div>
