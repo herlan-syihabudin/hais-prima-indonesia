@@ -29,16 +29,12 @@ export default function ProjectsPage() {
 
   // Filter projects
   const filteredProjects = projects.filter(project => {
-    // Search filter
     const matchesSearch = searchTerm === "" || 
       project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (project.client && project.client.toLowerCase().includes(searchTerm.toLowerCase()));
     
-    // Type filter
     const matchesType = filterType === "Semua" || project.projectType === filterType;
-    
-    // Year filter
     const matchesYear = filterYear === "Semua" || project.year === filterYear;
     
     return matchesSearch && matchesType && matchesYear;
@@ -59,8 +55,8 @@ export default function ProjectsPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      {/* Hero Section - FIXED */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -68,18 +64,18 @@ export default function ProjectsPage() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-4">
-              <FaHardHat className="text-blue-200 text-xs" />
-              <span className="text-xs tracking-wider">PROJECT PORTFOLIO</span>
+              <FaHardHat className="text-primary-200 text-xs" />
+              <span className="text-xs tracking-wider text-primary-100">PROJECT PORTFOLIO</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Proyek Kami</h1>
-            <p className="text-lg text-blue-100 max-w-2xl">
+            <p className="text-lg text-primary-100 max-w-2xl">
               Telah mempercayakan kebutuhan material konstruksi kepada kami untuk berbagai proyek skala nasional
             </p>
           </motion.div>
         </Container>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - FIXED */}
       <section className="py-8 bg-gray-50 border-b border-gray-200">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -91,7 +87,7 @@ export default function ProjectsPage() {
                 transition={{ delay: idx * 0.1 }}
                 className="text-center"
               >
-                <stat.icon className="text-blue-600 text-2xl mx-auto mb-2" />
+                <stat.icon className="text-primary-500 text-2xl mx-auto mb-2" />
                 <div className="text-2xl font-bold text-gray-800">{stat.value}</div>
                 <div className="text-xs text-gray-500">{stat.label}</div>
               </motion.div>
@@ -105,7 +101,7 @@ export default function ProjectsPage() {
         <Container>
           {/* Search & Filter Bar */}
           <div className="mb-8">
-            {/* Search Input */}
+            {/* Search Input - FIXED */}
             <div className="relative mb-4">
               <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
@@ -113,7 +109,7 @@ export default function ProjectsPage() {
                 placeholder="Cari proyek berdasarkan nama, lokasi, atau client..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full pl-11 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
               />
               {searchTerm && (
                 <button
@@ -125,9 +121,8 @@ export default function ProjectsPage() {
               )}
             </div>
 
-            {/* Filter Buttons */}
+            {/* Filter Buttons - FIXED */}
             <div className="flex flex-wrap gap-3">
-              {/* Type Filter */}
               <div className="flex flex-wrap gap-2">
                 <span className="text-sm text-gray-500 flex items-center gap-1 mr-2">
                   <FaFilter size={12} /> Tipe:
@@ -138,7 +133,7 @@ export default function ProjectsPage() {
                     onClick={() => setFilterType(type)}
                     className={`px-3 py-1.5 text-sm rounded-full transition ${
                       filterType === type
-                        ? "bg-blue-600 text-white"
+                        ? "bg-primary-500 text-white"
                         : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                     }`}
                   >
@@ -147,7 +142,6 @@ export default function ProjectsPage() {
                 ))}
               </div>
 
-              {/* Year Filter */}
               <div className="flex flex-wrap gap-2">
                 <span className="text-sm text-gray-500 flex items-center">Tahun:</span>
                 {projectYears.map((year) => (
@@ -156,7 +150,7 @@ export default function ProjectsPage() {
                     onClick={() => setFilterYear(year)}
                     className={`px-3 py-1.5 text-sm rounded-full transition ${
                       filterYear === year
-                        ? "bg-blue-600 text-white"
+                        ? "bg-primary-500 text-white"
                         : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                     }`}
                   >
@@ -166,24 +160,24 @@ export default function ProjectsPage() {
               </div>
             </div>
 
-            {/* Active Filters & Results Count */}
+            {/* Active Filters - FIXED */}
             {(hasActiveFilters || filteredProjects.length !== projects.length) && (
               <div className="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3 border-t border-gray-100">
                 <div className="flex flex-wrap gap-2">
                   {filterType !== "Semua" && (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-600 text-xs rounded-full">
                       Tipe: {filterType}
                       <button onClick={() => setFilterType("Semua")} className="ml-1">×</button>
                     </span>
                   )}
                   {filterYear !== "Semua" && (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-600 text-xs rounded-full">
                       Tahun: {filterYear}
                       <button onClick={() => setFilterYear("Semua")} className="ml-1">×</button>
                     </span>
                   )}
                   {searchTerm && (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-primary-50 text-primary-600 text-xs rounded-full">
                       Pencarian: {searchTerm}
                       <button onClick={() => setSearchTerm("")} className="ml-1">×</button>
                     </span>
@@ -239,7 +233,7 @@ export default function ProjectsPage() {
                     setFilterType("Semua");
                     setFilterYear("Semua");
                   }}
-                  className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
+                  className="mt-4 text-primary-500 hover:text-primary-600 font-medium"
                 >
                   Reset filter
                 </button>
@@ -247,12 +241,12 @@ export default function ProjectsPage() {
             )}
           </AnimatePresence>
 
-          {/* CTA Section */}
+          {/* CTA Section - FIXED */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mt-16 p-8 bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl text-center"
+            className="mt-16 p-8 bg-gradient-to-r from-primary-50 to-primary-100 rounded-2xl text-center"
           >
             <h3 className="text-2xl font-bold text-gray-800 mb-2">Punya Proyek Serupa?</h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
@@ -261,7 +255,7 @@ export default function ProjectsPage() {
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
                 href="/contact"
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+                className="bg-primary-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-600 transition"
               >
                 Konsultasi Sekarang
               </Link>
@@ -277,7 +271,7 @@ export default function ProjectsPage() {
             </div>
           </motion.div>
 
-          {/* Testimonial Preview (Optional) */}
+          {/* Footer Note */}
           <div className="mt-12 text-center">
             <p className="text-xs text-gray-400">
               *Beberapa proyek memerlukan izin publikasi dari klien
