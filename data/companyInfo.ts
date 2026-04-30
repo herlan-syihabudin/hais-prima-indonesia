@@ -148,8 +148,8 @@ export const getOrganizationSchema = () => {
     "name": companyInfo.name,
     "alternateName": companyInfo.shortName,
     "description": companyInfo.description,
-    "url": process.env.NEXT_PUBLIC_BASE_URL || "https://haisprima.com",
-    "logo": `${process.env.NEXT_PUBLIC_BASE_URL || "https://haisprima.com"}/images/logo.jpeg`,
+    "url": process.env.NEXT_PUBLIC_BASE_URL || "https://haisindonesia.com",
+    "logo": `${process.env.NEXT_PUBLIC_BASE_URL || "https://haisindonesia.com"}/images/logo.jpeg`,
     "foundingDate": companyInfo.organization.foundingDate,
     "founders": companyInfo.organization.founders.map(founder => ({
       "@type": "Person",
@@ -185,7 +185,7 @@ export const getLocalBusinessSchema = () => {
     "@type": "LocalBusiness",
     "name": companyInfo.name,
     "description": companyInfo.description,
-    "image": `${process.env.NEXT_PUBLIC_BASE_URL || "https://haisprima.com"}/images/logo.jpeg`,
+    "image": `${process.env.NEXT_PUBLIC_BASE_URL || "https://haisindonesia.com"}/images/logo.jpeg`,
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
