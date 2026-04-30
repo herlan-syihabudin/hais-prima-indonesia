@@ -1,5 +1,7 @@
+// src/app/contact/page.tsx
 "use client";
 
+import { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import ContactForm from "@/components/shared/ContactForm";
 import { motion } from "framer-motion";
@@ -16,8 +18,34 @@ import {
   FaHeadset
 } from "react-icons/fa";
 
+// ========== METADATA UNTUK SEO ==========
+export const metadata: Metadata = {
+  title: "Hubungi Kami - Konsultasi Besi Baja | PT Hais Prima Indonesia",
+  description: "Butuh penawaran harga atau konsultasi produk besi baja, stainless steel, warehouse racking, dan atap UPVC? Hubungi tim CS kami di Karawang. Respon cepat dalam 1x24 jam.",
+  keywords: "kontak, customer service, konsultasi besi baja, penawaran harga, alamat kantor karawang",
+  openGraph: {
+    title: "Hubungi PT Hais Prima Indonesia - Konsultasi Material Industri",
+    description: "Tim support kami siap membantu konsultasi teknis, permintaan penawaran, dan dukungan proyek Anda. Chat via WhatsApp atau kirim email.",
+    url: "https://haisindonesia.com/contact",
+    siteName: "PT Hais Prima Indonesia",
+    images: [
+      {
+        url: "https://haisindonesia.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PT Hais Prima Indonesia - Kontak & Customer Support",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://haisindonesia.com/contact",
+  },
+};
+
 export default function ContactPage() {
-  const whatsappNumber = "081188801198";
+  const whatsappNumber = "6281188801198";
   const phoneNumber = "6281188801198";
   const emailAddress = "info@haisindonesia.com";
 
@@ -73,7 +101,7 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero Section - FIXED */}
+      {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <Container>
           <motion.div
@@ -203,7 +231,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Trust Badge - FIXED */}
+              {/* Trust Badge */}
               <div className="mt-6 p-3 bg-primary-50 rounded-lg border border-primary-100">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
