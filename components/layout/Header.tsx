@@ -121,8 +121,8 @@ export default function Header() {
                 <Image 
                   src="/images/logo.jpeg" 
                   alt="Logo" 
-                  width={shouldShowSolid ? 45 : 50} 
-                  height={shouldShowSolid ? 45 : 50}
+                  width={shouldShowSolid ? 56 : 64} 
+                  height={shouldShowSolid ? 56 : 64}
                   className="transition-all duration-300"
                 />
                 <div className={`absolute -inset-1 ${bgAccent}/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
