@@ -212,7 +212,7 @@ html {
 }
 
 /* ==================== RESPONSIVE HELPERS ==================== */
-@screen xs {
+@media (min-width: 640px) {
   .container-custom {
     @apply px-3;
   }
