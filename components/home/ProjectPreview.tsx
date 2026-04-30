@@ -5,8 +5,9 @@ import Container from "@/components/ui/Container";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaHardHat, FaBuilding, FaChartLine, FaTruck, FaCheckCircle, FaArrowRight } from "react-icons/fa";
+import Image from "next/image";
 
-// Project Metrics Strip - Industrial Proof
+// Project Metrics Strip
 const projectMetrics = [
   { 
     icon: FaChartLine, 
@@ -34,7 +35,7 @@ const projectMetrics = [
   },
 ];
 
-// Project Data dengan Industrial Details
+// Project Data
 const featuredProjects = [
   {
     id: 1,
@@ -84,22 +85,22 @@ export default function ProjectPreview() {
   return (
     <section className="section-padding bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
       <Container>
-        {/* Section Header - Industrial Tone */}
+        {/* Section Header - FIXED */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-1.5 mb-4 border border-blue-500/20">
-            <FaHardHat className="text-blue-600 text-xs" />
-            <span className="text-xs font-mono text-blue-600 tracking-wider">ENGINEERING DELIVERY TRACK RECORD</span>
+          <div className="inline-flex items-center gap-2 bg-primary-500/10 rounded-full px-4 py-1.5 mb-4 border border-primary-500/20">
+            <FaHardHat className="text-primary-500 text-xs" />
+            <span className="text-xs font-mono text-primary-600 tracking-wider">ENGINEERING DELIVERY TRACK RECORD</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Project Execution
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600"> Portfolio</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400"> Portfolio</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Proven track record in industrial material supply, structural steel, and warehouse system installation
           </p>
         </div>
 
-        {/* Project Metrics Strip */}
+        {/* Project Metrics Strip - FIXED */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {projectMetrics.map((metric, idx) => (
             <motion.div
@@ -109,7 +110,7 @@ export default function ProjectPreview() {
               transition={{ delay: idx * 0.1 }}
               className="text-center p-4 rounded-xl bg-white shadow-sm border border-gray-100"
             >
-              <metric.icon className="text-blue-600 text-2xl mx-auto mb-2" />
+              <metric.icon className="text-primary-500 text-2xl mx-auto mb-2" />
               <div className="text-2xl font-bold text-gray-800">{metric.value}</div>
               <div className="text-sm font-semibold text-gray-700">{metric.label}</div>
               <div className="text-xs text-gray-400">{metric.sub}</div>
@@ -117,7 +118,7 @@ export default function ProjectPreview() {
           ))}
         </div>
 
-        {/* Project Cards Grid - Industrial Style */}
+        {/* Project Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredProjects.map((project, index) => (
             <motion.div
@@ -128,17 +129,17 @@ export default function ProjectPreview() {
               viewport={{ once: true }}
               className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
             >
-              {/* Image Container */}
+              {/* Image Container - FIXED pake next/image */}
               <div className="relative h-48 overflow-hidden bg-gray-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Badge */}
+                {/* Badge - FIXED */}
                 <div className="absolute top-3 right-3">
-                  <span className="bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded">
+                  <span className="bg-primary-500 text-white text-xs font-semibold px-2 py-1 rounded">
                     {project.badge}
                   </span>
                 </div>
@@ -150,13 +151,13 @@ export default function ProjectPreview() {
                 </div>
               </div>
 
-              {/* Content */}
+              {/* Content - FIXED client color */}
               <div className="p-5">
                 <div className="mb-3">
                   <h3 className="text-lg font-bold text-gray-800 mb-1 line-clamp-1">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-blue-600 font-medium">{project.client}</p>
+                  <p className="text-sm text-primary-500 font-medium">{project.client}</p>
                 </div>
 
                 {/* Project Scope */}
@@ -182,14 +183,14 @@ export default function ProjectPreview() {
                   </div>
                 </div>
 
-                {/* Key Metrics */}
+                {/* Key Metrics - FIXED icon color */}
                 <div className="flex items-center justify-between text-xs text-gray-500 pt-3 border-t border-gray-100">
                   <div className="flex items-center gap-1">
-                    <FaChartLine className="text-blue-500" size={12} />
+                    <FaChartLine className="text-primary-500" size={12} />
                     <span>{project.scale}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <FaBuilding className="text-blue-500" size={12} />
+                    <FaBuilding className="text-primary-500" size={12} />
                     <span>{project.location}</span>
                   </div>
                 </div>
@@ -198,11 +199,11 @@ export default function ProjectPreview() {
           ))}
         </div>
 
-        {/* CTA - Industrial Style */}
+        {/* CTA - Industrial Style - FIXED */}
         <div className="text-center mt-12">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary-500 text-primary-500 rounded-lg font-semibold hover:bg-primary-500 hover:text-white transition-all"
           >
             View Full Project Portfolio
             <FaArrowRight size={14} />
