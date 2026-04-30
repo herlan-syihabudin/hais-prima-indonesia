@@ -5,9 +5,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   // Nomor WhatsApp yang benar
-  const whatsappNumber = "6281326097800";
-  const phoneNumber = "6281326097800";
-  const emailAddress = "info@haisprima.com";
+  const whatsappNumber = "6281188801198";
+  const phoneNumber = "628188801198";
+  const emailAddress = "info@haisindonesia.com";
 
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-6">
@@ -56,7 +56,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-green-400 transition"
                 >
-                  0813-2609-7800
+                  0811-8880-1198
                 </a>
               </li>
               <li className="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition group">
@@ -65,7 +65,7 @@ export default function Footer() {
                   href={`tel:${phoneNumber}`}
                   className="hover:text-blue-400 transition"
                 >
-                  0813-2609-7800
+                  0811-8880-1198
                 </a>
               </li>
               <li className="flex items-center gap-3 text-gray-400 hover:text-red-400 transition group">
@@ -74,7 +74,7 @@ export default function Footer() {
                   href={`mailto:${emailAddress}`}
                   className="hover:text-red-400 transition"
                 >
-                  info@haisprima.com
+                  info@haisindonesia.com
                 </a>
               </li>
             </ul>
