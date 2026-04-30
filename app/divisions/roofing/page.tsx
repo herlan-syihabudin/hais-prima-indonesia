@@ -12,13 +12,17 @@ export default function RoofingDivisionPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-16">
+      {/* Header - FIXED (konsisten dengan tema industrial) */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-16">
         <Container>
-          <Link href="/" className="inline-flex items-center gap-2 text-teal-200 hover:text-white mb-4">
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 text-primary-200 hover:text-white transition-colors mb-4"
+          >
             <FaArrowLeft size={14} /> Kembali ke Beranda
           </Link>
           <h1 className="text-4xl font-bold">Atap UPVC</h1>
-          <p className="text-teal-100 mt-2">Atap modern, tahan cuaca, garansi 10 tahun</p>
+          <p className="text-primary-100 mt-2">Atap modern, tahan cuaca, garansi 10 tahun</p>
         </Container>
       </section>
 
