@@ -5,13 +5,11 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 
-// Inter untuk body text
 const inter = Inter({ 
   subsets: ["latin"],
   display: "swap",
 });
 
-// Playfair Display untuk headings
 const playfair = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
@@ -25,20 +23,9 @@ export const metadata: Metadata = {
   },
   description: "Distributor besi baja, stainless steel, pipa seamless, warehouse racking, dan atap UPVC. SNI Certified, EPC Ready, Melayani proyek konstruksi & industri di seluruh Indonesia.",
   keywords: [
-    "supplier besi baja",
-    "besi beton",
-    "hollow",
-    "wf beam",
-    "h beam",
-    "wiremesh",
-    "plat besi",
-    "stainless steel",
-    "pipa seamless",
-    "warehouse racking",
-    "atap upvc",
-    "konstruksi",
-    "EPC",
-    "tender support",
+    "supplier besi baja", "besi beton", "hollow", "wf beam", "h beam",
+    "wiremesh", "plat besi", "stainless steel", "pipa seamless",
+    "warehouse racking", "atap upvc", "konstruksi", "EPC", "tender support",
   ],
   authors: [{ name: "PT Hais Prima Indonesia" }],
   creator: "PT Hais Prima Indonesia",
@@ -61,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "PT Hais Prima Indonesia",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://haisindonesia.com/og-image.jpg", // ← ABSOLUTE URL
         width: 1200,
         height: 630,
         alt: "PT Hais Prima Indonesia - Supplier Besi Baja Terpercaya",
@@ -74,12 +61,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PT Hais Prima Indonesia - Supplier Besi Baja",
     description: "Distributor besi baja, stainless steel, pipa seamless, warehouse racking, dan atap UPVC.",
-    images: ["/og-image.jpg"],
+    images: ["https://haisindonesia.com/og-image.jpg"], // ← ABSOLUTE URL
   },
   alternates: {
     canonical: "https://haisindonesia.com",
   },
   category: "industrial-supply",
+  verification: {
+    google: "your-google-verification-code", // ← GANTI dengan kode real dari Search Console
+  },
 };
 
 export const viewport: Viewport = {
@@ -89,7 +79,12 @@ export const viewport: Viewport = {
   themeColor: "#0EA5E9",
 };
 
-// Schema.org JSON-LD untuk Organization
+// Koordinat real Karawang
+const KARAWANG_COORDS = {
+  lat: -6.322,  // Update dengan koordinat real kantor
+  lng: 107.234, // Update dengan koordinat real kantor
+};
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Corporation",
@@ -126,7 +121,6 @@ const organizationSchema = {
   ],
 };
 
-// Schema.org JSON-LD untuk LocalBusiness
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -144,8 +138,8 @@ const localBusinessSchema = {
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": -6.322,   // Update dengan koordinat real
-    "longitude": 107.234,  // Update dengan koordinat real
+    "latitude": KARAWANG_COORDS.lat,
+    "longitude": KARAWANG_COORDS.lng,
   },
   "openingHoursSpecification": [
     {
@@ -171,11 +165,9 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
-        {/* Google Analytics (opsional, tambahkan nanti) */}
-        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> */}
+        {/* Google Analytics nanti */}
       </head>
       <body className={`${inter.className} antialiased`}>
-        {/* Schema.org JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
