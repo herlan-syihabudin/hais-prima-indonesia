@@ -4,6 +4,7 @@ import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 
 const partners = [
   { name: "Waskita Karya", logo: "/images/partners/waskita.png" },
@@ -15,6 +16,12 @@ const partners = [
 ];
 
 export default function TrustedPartners() {
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (partnerName: string) => {
+    setImgErrors(prev => ({ ...prev, [partnerName]: true }));
+  };
+
   return (
     <section className="py-16 bg-gray-50 border-y border-gray-200">
       <Container>
@@ -30,15 +37,28 @@ export default function TrustedPartners() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.05 }}
               viewport={{ once: true }}
-              className="flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
+              className="group relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"
             >
               <div className="relative h-16 w-32">
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  fill
-                  className="object-contain"
-                />
+                {!imgErrors[partner.name] ? (
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    fill
+                    className="object-contain"
+                    onError={() => handleImageError(partner.name)}
+                  />
+                ) : (
+                  <div className="h-full w-full flex items-center justify-center bg-gray-100 rounded-lg">
+                    <span className="text-xs text-gray-400 text-center px-2">
+                      {partner.name}
+                    </span>
+                  </div>
+                )}
+              </div>
+              {/* Tooltip on hover */}
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap transition pointer-events-none z-10">
+                {partner.name}
               </div>
             </motion.div>
           ))}
