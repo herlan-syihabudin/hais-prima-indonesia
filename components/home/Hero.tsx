@@ -35,7 +35,7 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-besi.jpg"
+          src="/images/hero-besi-1.jpg"
           alt="Supplier Material Konstruksi & Industri"
           fill
           className="object-cover"
