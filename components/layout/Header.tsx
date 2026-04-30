@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FaBars, FaTimes, FaWhatsapp, FaSearch, FaChevronDown, FaIndustry, FaShieldAlt, FaWarehouse, FaHome } from "react-icons/fa";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -72,7 +72,9 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
+  const router = useRouter();
 
   const whatsappNumber = "6281188801198";
   const whatsappMessage = "Halo, saya tertarik dengan produk besi dan baja dari PT Hais Prima Indonesia";
@@ -95,11 +97,30 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
-  const isHomePage = pathname === "/";
-  // 🔥 KUNCI: header transparan hanya di homepage BELUM scroll
-  const shouldShowSolid = isScrolled || !isHomePage;
+  // Fungsi Search
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    router.push(`/products?search=${encodeURIComponent(searchQuery)}`);
+    setIsSearchOpen(false);
+    setSearchQuery("");
+  };
 
-  // Warna aksen konsisten dengan Hero (cyan)
+  // Tutup search kalo klik di luar
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (isSearchOpen && !target.closest('#search-container') && !target.closest('#search-button')) {
+        setIsSearchOpen(false);
+        setSearchQuery("");
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isSearchOpen]);
+
+  const isHomePage = pathname === "/";
+  const shouldShowSolid = isScrolled || !isHomePage;
   const bgAccent = "bg-cyan-500";
 
   return (
@@ -108,37 +129,37 @@ export default function Header() {
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           shouldShowSolid 
             ? "bg-white shadow-lg py-2" 
-            : "bg-transparent py-5"  // ← transparan total!
+            : "bg-transparent py-5"
         }`}
       >
         <div className="container-custom">
           <div className="flex justify-between items-center">
             {/* Logo */}
-<Link href="/" className="flex items-center gap-3 group">
-  <div className="relative">
-    <Image 
-      src="/images/logo-transparent.png" 
-      alt="Logo PT Hais Prima Indonesia" 
-      width={shouldShowSolid ? 80 : 90}      // ← dari 56/64 jadi 80/90
-      height={shouldShowSolid ? 80 : 90}     // ← dari 56/64 jadi 80/90
-      className="transition-all duration-300"
-      priority
-    />
-    <div className={`absolute -inset-1 ${bgAccent}/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-  </div>
-  <div className="flex flex-col">
-    <span className={`font-bold text-lg md:text-xl transition-all duration-300 ${
-      shouldShowSolid ? "text-gray-800" : "text-white"
-    }`}>
-      Hais Prima Indonesia
-    </span>
-    <span className={`text-xs hidden md:block transition-all duration-300 ${
-      shouldShowSolid ? "text-gray-500" : "text-cyan-100"
-    }`}>
-      Supplier Besi & Baja Terpercaya
-    </span>
-  </div>
-</Link>
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative">
+                <Image 
+                  src="/images/logo-transparent.png" 
+                  alt="Logo PT Hais Prima Indonesia" 
+                  width={shouldShowSolid ? 80 : 90}
+                  height={shouldShowSolid ? 80 : 90}
+                  className="transition-all duration-300"
+                  priority
+                />
+                <div className={`absolute -inset-1 ${bgAccent}/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+              </div>
+              <div className="flex flex-col">
+                <span className={`font-bold text-lg md:text-xl transition-all duration-300 ${
+                  shouldShowSolid ? "text-gray-800" : "text-white"
+                }`}>
+                  Hais Prima Indonesia
+                </span>
+                <span className={`text-xs hidden md:block transition-all duration-300 ${
+                  shouldShowSolid ? "text-gray-500" : "text-cyan-100"
+                }`}>
+                  Supplier Besi & Baja Terpercaya
+                </span>
+              </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-6">
@@ -164,7 +185,7 @@ export default function Header() {
                                 href={item.href}
                                 className="flex items-center gap-3 px-4 py-3 bg-gray-50 hover:bg-cyan-50 rounded-xl transition"
                               >
-                                <div className={`w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center text-cyan-600`}>
+                                <div className="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center text-cyan-600">
                                   {item.icon && <item.icon size={20} />}
                                 </div>
                                 <div>
@@ -226,8 +247,9 @@ export default function Header() {
 
             {/* Right Actions */}
             <div className="flex items-center gap-4">
-              {/* Search Button */}
+              {/* Search Button - with id for click outside detection */}
               <button
+                id="search-button"
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className={`p-2 rounded-full transition-all duration-300 ${
                   shouldShowSolid 
@@ -268,33 +290,71 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Search Bar */}
+        {/* Search Bar - FIXED with id for click outside */}
         <AnimatePresence>
           {isSearchOpen && (
             <motion.div
+              id="search-container"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100"
+              className="absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 z-[100]"
             >
               <div className="container-custom py-4">
-                <div className="relative">
+                <form onSubmit={handleSearch} className="relative">
                   <input
                     type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Cari produk: Plate, WF, Pipa Seamless, Racking, Atap UPVC..."
                     className="w-full px-5 py-3 pr-12 border border-gray-200 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20"
                     autoFocus
                   />
-                  <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-cyan-600">
+                  <button 
+                    type="submit"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-cyan-600"
+                  >
                     <FaSearch size={18} />
                   </button>
-                </div>
-                <div className="flex gap-4 mt-3 text-xs text-gray-400">
+                </form>
+                <div className="flex gap-4 mt-3 text-xs text-gray-400 flex-wrap">
                   <span>Populer:</span>
-                  <Link href="/products?category=Material+Steel&sub=WF" className="hover:text-cyan-600">WF Beam</Link>
-                  <Link href="/products?category=Material+Steel&sub=Seamless" className="hover:text-cyan-600">Pipa Seamless</Link>
-                  <Link href="/products?category=Warehouse+Racking" className="hover:text-cyan-600">Pallet Racking</Link>
-                  <Link href="/products?category=Atap+UPVC" className="hover:text-cyan-600">Atap UPVC</Link>
+                  <button 
+                    onClick={() => {
+                      router.push("/products?search=WF Beam");
+                      setIsSearchOpen(false);
+                    }}
+                    className="hover:text-cyan-600 transition"
+                  >
+                    WF Beam
+                  </button>
+                  <button 
+                    onClick={() => {
+                      router.push("/products?search=Pipa Seamless");
+                      setIsSearchOpen(false);
+                    }}
+                    className="hover:text-cyan-600 transition"
+                  >
+                    Pipa Seamless
+                  </button>
+                  <button 
+                    onClick={() => {
+                      router.push("/products?search=Pallet Racking");
+                      setIsSearchOpen(false);
+                    }}
+                    className="hover:text-cyan-600 transition"
+                  >
+                    Pallet Racking
+                  </button>
+                  <button 
+                    onClick={() => {
+                      router.push("/products?search=Atap UPVC");
+                      setIsSearchOpen(false);
+                    }}
+                    className="hover:text-cyan-600 transition"
+                  >
+                    Atap UPVC
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -310,12 +370,13 @@ export default function Header() {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="lg:hidden bg-white shadow-lg border-t border-gray-100 overflow-hidden max-h-[80vh] overflow-y-auto"
+              onClick={() => setIsSearchOpen(false)}
             >
               <div className="container-custom py-4">
                 {navLinks.map((link) => (
                   <div key={link.label}>
                     {link.hasDropdown ? (
-                      <MobileDropdown item={link} pathname={pathname} setIsOpen={setIsOpen} accentColor="text-cyan-600" />
+                      <MobileDropdown item={link} pathname={pathname} setIsOpen={setIsOpen} />
                     ) : (
                       link.href && (
                         <Link
@@ -355,7 +416,7 @@ export default function Header() {
 }
 
 // Component for Mobile Dropdown
-function MobileDropdown({ item, pathname, setIsOpen, accentColor }: { item: any; pathname: string; setIsOpen: (open: boolean) => void; accentColor: string }) {
+function MobileDropdown({ item, pathname, setIsOpen }: { item: any; pathname: string; setIsOpen: (open: boolean) => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
