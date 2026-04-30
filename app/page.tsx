@@ -1,5 +1,6 @@
 // src/app/page.tsx
 import { Metadata } from "next";
+import LazySection from "@/components/ui/LazySection";
 import Hero from "@/components/home/Hero";
 import TrustedPartners from "@/components/home/TrustedPartners";
 import BusinessLines from "@/components/home/BusinessLines";
@@ -9,7 +10,7 @@ import ProjectPreview from "@/components/home/ProjectPreview";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import CTASection from "@/components/home/CTASection";
 
-// Metadata untuk SEO - pindah dari ProductHighlights ke sini
+// Metadata untuk SEO
 export const metadata: Metadata = {
   title: "PT Hais Prima Indonesia - Supplier Besi Baja & Material Industri Terpercaya",
   description: "Distributor besi baja, stainless steel, pipa seamless, warehouse racking, dan atap UPVC. SNI Certified, EPC Ready, Melayani proyek konstruksi & industri di seluruh Indonesia.",
@@ -52,14 +53,36 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      {/* Hero - Priority, No Lazy (above the fold) */}
       <Hero />
+      
+      {/* TrustedPartners - Still visible, bisa dikasih lazy atau tidak, terserah */}
       <TrustedPartners />
-      <TestimonialSection />
-      <BusinessLines />
-      <ProductHighlights />
-      <WhyChooseUs />
-      <ProjectPreview />
-      <CTASection />
+
+      {/* Lazy Load sections - di bawah fold */}
+      <LazySection threshold={0.1}>
+        <TestimonialSection />
+      </LazySection>
+
+      <LazySection threshold={0.1}>
+        <BusinessLines />
+      </LazySection>
+
+      <LazySection threshold={0.1}>
+        <ProductHighlights />
+      </LazySection>
+
+      <LazySection threshold={0.1}>
+        <WhyChooseUs />
+      </LazySection>
+
+      <LazySection threshold={0.1}>
+        <ProjectPreview />
+      </LazySection>
+
+      <LazySection threshold={0.1}>
+        <CTASection />
+      </LazySection>
     </>
   );
 }
