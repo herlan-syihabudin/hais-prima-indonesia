@@ -25,25 +25,25 @@ export default function AboutPage() {
       title: "Integritas",
       description: "Kami berkomitmen untuk selalu jujur dan transparan dalam setiap transaksi dan pengadaan material.",
       icon: FaHandshake,
-      color: "text-blue-600",
+      color: "text-primary-500",
     },
     {
       title: "Kualitas",
       description: "Hanya produk bersertifikat SNI & standar internasional yang kami supply untuk kepuasan pelanggan.",
       icon: FaStar,
-      color: "text-yellow-500",
+      color: "text-accent-500",
     },
     {
       title: "Inovasi",
       description: "Terus berinovasi dalam solusi material dan sistem pengadaan untuk efisiensi proyek.",
       icon: FaLightbulb,
-      color: "text-green-500",
+      color: "text-secondary-500",
     },
     {
       title: "Kemitraan",
       description: "Membangun hubungan jangka panjang dengan client, supplier, dan stakeholder industri.",
       icon: FaUsers,
-      color: "text-purple-500",
+      color: "text-primary-500",
     },
   ];
 
@@ -63,8 +63,8 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+      {/* Hero Section - FIXED */}
+      <section className="bg-gradient-to-r from-primary-600 to-primary-800 text-white py-20">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -72,18 +72,18 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-4">
-              <FaHardHat className="text-blue-200 text-xs" />
-              <span className="text-xs tracking-wider">EST. 2015</span>
+              <FaHardHat className="text-white/80 text-xs" />
+              <span className="text-xs tracking-wider text-white/90">EST. 2015</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Tentang Kami</h1>
-            <p className="text-lg text-blue-100 max-w-2xl">
+            <p className="text-lg text-primary-100 max-w-2xl">
               Pelajari lebih lanjut tentang perjalanan, komitmen, dan kapabilitas PT Hais Prima Indonesia
             </p>
           </motion.div>
         </Container>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - FIXED */}
       <section className="py-12 bg-gray-50 border-b border-gray-200">
         <Container>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 transition={{ delay: idx * 0.1 }}
                 className="text-center"
               >
-                <stat.icon className="text-blue-600 text-2xl mx-auto mb-2" />
+                <stat.icon className="text-primary-500 text-2xl mx-auto mb-2" />
                 <div className="text-2xl md:text-3xl font-bold text-gray-800">{stat.value}</div>
                 <div className="text-xs text-gray-500">{stat.label}</div>
               </motion.div>
@@ -138,9 +138,9 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center gap-2 bg-blue-50 rounded-full px-3 py-1 mb-4">
-                <FaBuilding className="text-blue-600 text-xs" />
-                <span className="text-xs font-semibold text-blue-600">PROFILE</span>
+              <div className="inline-flex items-center gap-2 bg-primary-50 rounded-full px-3 py-1 mb-4">
+                <FaBuilding className="text-primary-500 text-xs" />
+                <span className="text-xs font-semibold text-primary-600">PROFILE</span>
               </div>
               <h2 className="text-3xl font-bold mb-4">PT Hais Prima Indonesia</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
@@ -170,7 +170,7 @@ export default function AboutPage() {
           <div className="flex flex-wrap justify-center gap-8">
             {certifications.map((cert, idx) => (
               <div key={idx} className="flex items-center gap-3">
-                <cert.icon className="text-blue-600 text-xl" />
+                <cert.icon className="text-primary-500 text-xl" />
                 <div>
                   <div className="text-sm font-semibold text-gray-800">{cert.label}</div>
                   <div className="text-xs text-gray-500">{cert.desc}</div>
@@ -209,18 +209,18 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      {/* CTA Section - FIXED */}
+      <section className="py-16 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-4">Siap Memulai Proyek Anda?</h2>
-            <p className="text-blue-100 mb-8">
+            <p className="text-primary-100 mb-8">
               Konsultasikan kebutuhan material Anda dengan tim engineering kami
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
                 href="/contact"
-                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+                className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
               >
                 Hubungi Kami
               </Link>
