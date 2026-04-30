@@ -17,9 +17,9 @@ import {
 } from "react-icons/fa";
 
 export default function ContactPage() {
-  const whatsappNumber = "6281326097800";
-  const phoneNumber = "6281326097800";
-  const emailAddress = "info@haisprima.com";
+  const whatsappNumber = "081188801198";
+  const phoneNumber = "6281188801198";
+  const emailAddress = "info@haisindonesia.com";
 
   const contactInfo = [
     {
@@ -34,7 +34,7 @@ export default function ContactPage() {
     {
       icon: FaWhatsapp,
       title: "WhatsApp Business",
-      content: "0813-2609-7800",
+      content: "0811-8880-1198",
       detail: "Fast response within 5 minutes",
       color: "text-green-500",
       link: `https://wa.me/${whatsappNumber}`,
@@ -43,7 +43,7 @@ export default function ContactPage() {
     {
       icon: FaPhone,
       title: "Telepon / Hotline",
-      content: "0813-2609-7800",
+      content: "0811-8880-1198",
       detail: "Senin - Sabtu, 08:00 - 17:00",
       color: "text-blue-500",
       link: `tel:${phoneNumber}`,
