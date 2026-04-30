@@ -8,8 +8,8 @@ export default function WhatsAppFloat() {
   const [isOpen, setIsOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
   
-  // Nomor WhatsApp sudah diupdate ke 081326097800
-  const whatsappNumber = "6281326097800";
+  // Nomor WhatsApp sudah diupdate ke 081188801198
+  const whatsappNumber = "6281188801198";
   const defaultMessage = "Halo, saya tertarik dengan produk besi dan baja dari PT Hais Prima Indonesia";
 
   useEffect(() => {
