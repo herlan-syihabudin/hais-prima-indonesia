@@ -45,99 +45,16 @@
     @apply py-16 md:py-20 lg:py-28;
   }
 
+  /* FIXED: Gradient text dengan primary color */
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary-500 to-primary-400 bg-clip-text text-transparent;
   }
 
   .card-hover {
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
-}
 
-@layer utilities {
-  .text-shadow {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .text-shadow-sm {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  }
-
-  .animation-delay-200 {
-    animation-delay: 200ms;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 400ms;
-  }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #1d4ed8;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #2563eb #f1f1f1;
-}
-
-/* Backdrop blur support */
-.backdrop-blur-md {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-@supports not (backdrop-filter: blur(12px)) {
-  .backdrop-blur-md {
-    background-color: rgba(255, 255, 255, 0.95);
-  }
-}
-
- /* Dark mode support (optional) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: light; /* Atur sesuai kebutuhan */
-  }
-}
-
-/* Prevent zoom on input focus (iOS) */
-@media (max-width: 640px) {
-  input, 
-  textarea, 
-  select {
-    font-size: 16px;
-  }
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Better focus outline for accessibility */
-:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
-}
-
- /* Premium Card Effects */
-@layer components {
+  /* Premium Card Effects */
   .premium-card {
     @apply relative overflow-hidden rounded-2xl border transition-all duration-500;
   }
@@ -159,16 +76,126 @@ html {
   .glow-border::after {
     content: '';
     @apply absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #14b8a6);
+    background: linear-gradient(135deg, #0EA5E9, #0284C7, #1E293B);
     z-index: -1;
   }
   
   .glow-border:hover::after {
     @apply opacity-100;
   }
+
+  /* Industrial Card Styles */
+  .industrial-card {
+    @apply bg-white border border-gray-200 rounded-xl shadow-industrial hover:shadow-industrial-lg transition-all duration-300;
+  }
+
+  .industrial-stat-card {
+    @apply bg-white border border-gray-100 rounded-lg p-4 text-center transition-all duration-300;
+    @apply hover:border-primary-500 hover:border-opacity-30;
+  }
+
+  .industrial-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .industrial-badge-primary {
+    @apply bg-primary-500/10 text-primary-600 border border-primary-500/20;
+  }
 }
 
-/* Corporate Dashboard Stats Animation */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  /* Hide scrollbar for category bar */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0EA5E9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0284C7;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0EA5E9 #f1f1f1;
+}
+
+/* ==================== BACKDROP BLUR SUPPORT ==================== */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  .backdrop-blur-md {
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
+}
+
+/* ==================== iOS ZOOM FIX ==================== */
+@media (max-width: 640px) {
+  input, 
+  textarea, 
+  select {
+    font-size: 16px;
+  }
+}
+
+/* ==================== SMOOTH SCROLL ==================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==================== ACCESSIBILITY FOCUS ==================== */
+:focus-visible {
+  outline: 2px solid #0EA5E9;
+  outline-offset: 2px;
+}
+
+/* ==================== STATS ANIMATION ==================== */
 @keyframes countUp {
   from {
     opacity: 0;
@@ -184,7 +211,48 @@ html {
   animation: countUp 0.6s ease-out forwards;
 }
 
- /* Hide scrollbar for category bar */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+/* ==================== RESPONSIVE HELPERS ==================== */
+@screen xs {
+  .container-custom {
+    @apply px-3;
+  }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .container-custom {
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+/* ==================== LOADING SKELETON ==================== */
+.skeleton {
+  @apply bg-gray-200 animate-pulse rounded;
+}
+
+/* ==================== ANIMATION DELAYS ==================== */
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 300ms;
+}
+.delay-400 {
+  animation-delay: 400ms;
+}
+.delay-500 {
+  animation-delay: 500ms;
 }
