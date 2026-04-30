@@ -117,7 +117,7 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative">
                 <Image 
-                  src="/images/logo.jpeg" 
+                  src="/images/logo-transparent.png" 
                   alt="Logo PT Hais Prima Indonesia" 
                   width={shouldShowSolid ? 56 : 64} 
                   height={shouldShowSolid ? 56 : 64}
