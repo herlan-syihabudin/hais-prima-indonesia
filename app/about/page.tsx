@@ -1,7 +1,7 @@
 // src/app/about/page.tsx
-"use client";
+// HAPUS "use client" di baris pertama
+// HAPUS import { Metadata } dari next
 
-import { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import SectionTitle from "@/components/shared/SectionTitle";
 import Image from "next/image";
@@ -22,30 +22,8 @@ import {
 } from "react-icons/fa";
 
 // ========== METADATA UNTUK SEO ==========
-export const metadata: Metadata = {
-  title: "Tentang PT Hais Prima Indonesia - Supplier Besi Baja Terpercaya",
-  description: "Pelajari perjalanan dan komitmen PT Hais Prima Indonesia sebagai distributor besi baja, stainless steel, dan material industri terpercaya di Indonesia sejak 2015.",
-  keywords: "tentang kami, supplier besi baja, distributor besi, perusahaan besi karawang, profil perusahaan",
-  openGraph: {
-    title: "Tentang PT Hais Prima Indonesia - Supplier Besi Baja",
-    description: "Pelajari perjalanan dan komitmen PT Hais Prima Indonesia dalam menyediakan material industri berkualitas.",
-    url: "https://haisindonesia.com/about",
-    siteName: "PT Hais Prima Indonesia",
-    images: [
-      {
-        url: "https://haisindonesia.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "PT Hais Prima Indonesia - Tentang Kami",
-      },
-    ],
-    locale: "id_ID",
-    type: "website",
-  },
-  alternates: {
-    canonical: "https://haisindonesia.com/about",
-  },
-};
+// HAPUS INI JUGA! Metadata gak bisa di Client Component
+// export const metadata: Metadata = { ... }
 
 export default function AboutPage() {
   const values = [
@@ -132,7 +110,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Company Profile - dengan H2 */}
+      {/* Company Profile */}
       <section className="section-padding">
         <Container>
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -170,7 +148,6 @@ export default function AboutPage() {
                 <FaBuilding className="text-primary-500 text-xs" />
                 <span className="text-xs font-semibold text-primary-600">PROFILE</span>
               </div>
-              {/* H2 untuk Company Profile */}
               <h2 className="text-3xl font-bold mb-4">PT Hais Prima Indonesia</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 Didirikan pada tahun 2015, <strong className="text-primary-600">PT Hais Prima Indonesia</strong> telah menjadi salah satu
@@ -209,7 +186,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Core Values - dengan H2 */}
+      {/* Core Values */}
       <section className="section-padding">
         <Container>
           <SectionTitle
