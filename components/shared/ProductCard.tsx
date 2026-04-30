@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Product } from "@/types/product";
 import { FaWhatsapp, FaRuler, FaWeightHanging } from "react-icons/fa";
 import Link from "next/link";
+import { companyInfo } from "@/data/companyInfo";
 
 // Function to generate slug from product name
 function slugify(text: string): string {
@@ -21,8 +22,9 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, index }: ProductCardProps) {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281188801198";
-  const message = `Halo, saya tertarik dengan produk ${product.name} dari PT Hais Prima Indonesia`;
+  // FIXED: pake dari companyInfo biar konsisten
+  const whatsappNumber = companyInfo.contact.whatsapp;
+  const message = `Halo, saya tertarik dengan produk ${product.name} dari ${companyInfo.name}`;
   const slug = slugify(product.name);
 
   return (
@@ -33,17 +35,19 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       viewport={{ once: true }}
       className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
     >
-      {/* Image - Clickable ke slug */}
+      {/* Image - Clickable ke slug - OPTIMIZED */}
       <Link href={`/products/${slug}`}>
         <div className="relative h-52 overflow-hidden cursor-pointer">
           <Image
             src={product.image}
             alt={product.name}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="lazy"
+            quality={80}
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute top-3 left-3">
-            {/* FIXED: bg-blue-600 → bg-primary-500 */}
             <span className="bg-primary-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               {product.category}
             </span>
@@ -54,7 +58,6 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       <div className="p-4">
         {/* Title - Clickable ke slug */}
         <Link href={`/products/${slug}`}>
-          {/* FIXED: hover:text-blue-600 → hover:text-primary-500 */}
           <h3 className="text-lg font-bold mb-1 line-clamp-1 hover:text-primary-500 transition-colors cursor-pointer">
             {product.name}
           </h3>
@@ -77,11 +80,10 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between">
           <div>
             <span className="text-xs text-gray-500">Harga</span>
-            {/* FIXED: text-blue-600 → text-primary-500 */}
             <p className="text-xl font-bold text-primary-500">{product.price}</p>
           </div>
           
-          {/* Tombol Beli tetap WhatsApp - warna hijau standar */}
+          {/* Tombol Beli WhatsApp */}
           <a
             href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
             target="_blank"
