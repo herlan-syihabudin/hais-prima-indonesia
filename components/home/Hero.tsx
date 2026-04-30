@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaCheckCircle, FaIndustry, FaShieldAlt, FaBoxes } from "react-icons/fa";
+import { FaCheckCircle, FaIndustry, FaShieldAlt, FaBoxes, FaArrowRight } from "react-icons/fa";
 
 export default function Hero() {
   const [stats] = useState([
@@ -14,19 +14,17 @@ export default function Hero() {
     { label: "Kepuasan Klien", value: "98%", icon: FaCheckCircle },
   ]);
 
-  const capabilities = [
-    "Material Besi & Baja (WF, H-Beam, Plate, Siku, UNP, Pipa Besi, Pipa Galv)",
-    "Material Stainless Steel SUS 304 (Plate, Pipa, Siku, UNP)",
-    "Pipa Seamless SCH 40 & SCH 80",
-    "Fitting & Flange (Carbon Steel & Stainless Steel)",
-    "Warehouse Racking System (Pallet Racking, Heavy Duty, Mezzanine)",
-    "Atap UPVC & Aksesoris (Lisplang, Talang Air)",
+  // Ringkas jadi 3 kategori utama
+  const coreProducts = [
+    "Material Besi & Baja",
+    "Stainless Steel SUS 304",
+    "Warehouse Racking System",
   ];
 
   const trustPoints = [
-    "Material sesuai standar SNI & internasional (ASTM, JIS)",
-    "Pendampingan pengadaan berbasis proyek (project-based)",
-    "Melayani sektor industri, konstruksi, dan infrastruktur",
+    "Material SNI & Internasional (ASTM, JIS)",
+    "Pendampingan Pengadaan Proyek",
+    "Melayani Industri, Konstruksi & Infrastruktur",
   ];
 
   return (
@@ -35,85 +33,86 @@ export default function Hero() {
       <div className="absolute inset-0 w-full h-full">
         <Image
           src="/images/hero-besi-1.jpg"
-          alt="Supplier Material Konstruksi & Industri"
+          alt="Supplier Besi Baja & Material Industri Terpercaya"
           fill
           className="object-cover brightness-90"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
       </div>
 
-      <Container>
-        <div className="relative z-10 text-white py-12 md:py-16 lg:py-20">
+      <Container maxWidth="7xl">
+        <div className="relative z-10 text-white py-16 md:py-20 lg:py-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight max-w-5xl">
-              Integrated Steel & 
-              <span className="block text-cyan-400">
-                Industrial Supply Solutions
+            {/* Badge - tambahin biar lebih mewah */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full mb-4 md:mb-6">
+              <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+              <span className="text-xs tracking-wider text-gray-200">SUPPLIER BESI & BAJA TERPERCAYA</span>
+            </div>
+
+            {/* Main Headline - SEO killer */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight max-w-5xl">
+              Supplier Besi & Baja
+              <span className="block text-cyan-400 mt-2">
+                Solusi Material Industri
               </span>
             </h1>
 
-            {/* Sub Headline */}
-            <p className="text-base sm:text-lg md:text-xl mt-4 md:mt-6 text-gray-200 max-w-3xl">
-              Mitra pengadaan bergerak dibidang All steel Material, Stainless Steel, 
-              Warehouse Racking Provider, dan Atap industri untuk kebutuhan proyek 
-              skala kecil hingga besar.
+            {/* Sub Headline - keyword rich */}
+            <p className="text-base sm:text-lg md:text-xl mt-4 md:mt-6 text-gray-200 max-w-2xl leading-relaxed">
+              Distributor dan supplier besi baja, stainless steel, serta sistem racking gudang untuk kebutuhan proyek konstruksi, manufaktur, dan infrastruktur di seluruh Indonesia.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-3 sm:gap-4 mt-6 md:mt-8">
-              <Button href="/contact" size="lg">
-                Minta Penawaran
+              <Button href="/contact" size="lg" icon={<FaArrowRight />} iconPosition="right">
+                Konsultasi Gratis
               </Button>
-              <Button href="/divisions/steel" variant="outline" size="lg">
-                Lihat Produk
+              <Button href="/products" variant="outline" size="lg">
+                Lihat Katalog Produk
               </Button>
             </div>
 
-            {/* Trust Points - Grid lebih rapi di mobile */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mt-8 md:mt-10">
-              {trustPoints.map((item, i) => (
-                <div key={i} className="flex items-start gap-2 md:gap-3 text-xs md:text-sm text-gray-200 bg-white/5 backdrop-blur-sm p-2.5 md:p-3 rounded-lg">
-                  <FaShieldAlt className="text-cyan-400 mt-0.5 flex-shrink-0 text-sm md:text-base" />
-                  <span>{item}</span>
-                </div>
+            {/* Core Products - pill badges (lebih ringkas) */}
+            <div className="flex flex-wrap gap-2 mt-6 md:mt-8">
+              {coreProducts.map((item, i) => (
+                <span key={i} className="text-xs md:text-sm text-cyan-300 bg-cyan-500/10 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-cyan-500/30">
+                  {item}
+                </span>
               ))}
             </div>
 
-            {/* Core Capabilities */}
-            <div className="mt-8 md:mt-10 border-t border-white/20 pt-5 md:pt-6">
-              <h3 className="text-xs md:text-sm tracking-widest text-gray-300 mb-3 md:mb-4">
-                LAYANAN & PRODUK KAMI
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
-                {capabilities.map((item, i) => (
-                  <div key={i} className="flex items-start gap-2 text-gray-200 text-xs md:text-sm bg-white/5 backdrop-blur-sm p-2 md:p-2.5 rounded-lg">
-                    <FaCheckCircle className="text-cyan-400 flex-shrink-0 mt-0.5 text-xs md:text-sm" />
+            {/* Trust Points & Stats - 2 column layout */}
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mt-8 md:mt-10">
+              {/* Trust Points - hidden di mobile biar gak rame, muncul di md */}
+              <div className="hidden md:block space-y-2">
+                {trustPoints.map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-gray-300">
+                    <FaShieldAlt className="text-cyan-400 text-sm flex-shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
-            </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-3 md:gap-6 mt-8 md:mt-10">
-              {stats.map((stat, i) => (
-                <div key={i} className="text-left bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-xl">
-                  <stat.icon className="text-cyan-400 text-lg md:text-2xl mb-1 md:mb-2" />
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
-                    {stat.value}
+              {/* Stats - 3 kolom */}
+              <div className="grid grid-cols-3 gap-3 md:gap-4">
+                {stats.map((stat, i) => (
+                  <div key={i} className="text-center bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-xl">
+                    <stat.icon className="text-cyan-400 text-xl md:text-2xl mx-auto mb-1 md:mb-2" />
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
+                      {stat.value}
+                    </div>
+                    <div className="text-[10px] md:text-xs text-gray-300 uppercase tracking-wide mt-0.5 md:mt-1">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-xs text-gray-300 uppercase tracking-wide mt-0.5 md:mt-1">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
           </motion.div>
