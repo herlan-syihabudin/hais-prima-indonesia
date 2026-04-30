@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
@@ -16,6 +16,14 @@ export const metadata: Metadata = {
     description: "Supplier Besi & Baja Terpercaya",
     images: ["/og-image.jpg"],
   },
+  robots: "index, follow",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#0EA5E9",
 };
 
 export default function RootLayout({
@@ -25,9 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body className={inter.className}>
+      <body className={`${inter.className} antialiased`}>
         <Header />
-        <main>{children}</main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
         <WhatsAppFloat />
       </body>
