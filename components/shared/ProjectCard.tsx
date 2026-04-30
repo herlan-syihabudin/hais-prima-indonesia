@@ -20,10 +20,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300"
     >
       <div className="relative h-64 overflow-hidden">
+        {/* OPTIMIZED Image */}
         <Image
           src={project.image}
           alt={project.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          loading="lazy"
+          quality={80}
           className="object-cover group-hover:scale-110 transition-transform duration-500"
         />
         
@@ -37,7 +41,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </div>
 
-        {/* View Button on Hover - FIXED */}
+        {/* View Button on Hover */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
           <button className="bg-white/90 backdrop-blur text-primary-500 px-5 py-2.5 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition flex items-center gap-2 shadow-md">
             Lihat Detail
@@ -47,12 +51,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       <div className="p-5">
-        {/* Project Type Tag - FIXED */}
+        {/* Project Type Tag */}
         <div className="inline-flex items-center px-2 py-1 text-[10px] bg-primary-50 text-primary-600 rounded-md mb-2">
           Industrial Project
         </div>
         
-        {/* Title - FIXED hover color */}
+        {/* Title */}
         <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-primary-500 transition-colors line-clamp-1">
           {project.title}
         </h3>
