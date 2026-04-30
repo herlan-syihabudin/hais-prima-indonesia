@@ -49,7 +49,7 @@ export const products: Product[] = [
     subCategory: "UNP",
     description: "Besi channel untuk konstruksi, rangka, dan dinding",
     price: "Rp 15.500/kg",
-    image: "/images/products/unp.jpg",
+    image: "/images/products/besi-unp.jpg",
     specifications: ["Ukuran 50x25 - 300x100mm", "Tebal 3-10mm", "Panjang 6m", "Standar JIS"],
   },
   {
