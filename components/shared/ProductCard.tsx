@@ -21,7 +21,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, index }: ProductCardProps) {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281326097800";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6281188801198";
   const message = `Halo, saya tertarik dengan produk ${product.name} dari PT Hais Prima Indonesia`;
   const slug = slugify(product.name);
 
@@ -43,7 +43,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute top-3 left-3">
-            <span className="bg-blue-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+            {/* FIXED: bg-blue-600 → bg-primary-500 */}
+            <span className="bg-primary-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
               {product.category}
             </span>
           </div>
@@ -53,7 +54,8 @@ export default function ProductCard({ product, index }: ProductCardProps) {
       <div className="p-4">
         {/* Title - Clickable ke slug */}
         <Link href={`/products/${slug}`}>
-          <h3 className="text-lg font-bold mb-1 line-clamp-1 hover:text-blue-600 transition-colors cursor-pointer">
+          {/* FIXED: hover:text-blue-600 → hover:text-primary-500 */}
+          <h3 className="text-lg font-bold mb-1 line-clamp-1 hover:text-primary-500 transition-colors cursor-pointer">
             {product.name}
           </h3>
         </Link>
@@ -75,10 +77,11 @@ export default function ProductCard({ product, index }: ProductCardProps) {
         <div className="flex items-center justify-between">
           <div>
             <span className="text-xs text-gray-500">Harga</span>
-            <p className="text-xl font-bold text-blue-600">{product.price}</p>
+            {/* FIXED: text-blue-600 → text-primary-500 */}
+            <p className="text-xl font-bold text-primary-500">{product.price}</p>
           </div>
           
-          {/* Tombol Beli tetap WhatsApp */}
+          {/* Tombol Beli tetap WhatsApp - warna hijau standar */}
           <a
             href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
             target="_blank"
