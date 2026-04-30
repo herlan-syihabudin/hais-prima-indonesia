@@ -45,7 +45,7 @@
     @apply py-16 md:py-20 lg:py-28;
   }
 
-  /* FIXED: Gradient text dengan primary color */
+  /* Gradient text dengan primary color */
   .gradient-text {
     @apply bg-gradient-to-r from-primary-500 to-primary-400 bg-clip-text text-transparent;
   }
@@ -54,7 +54,7 @@
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
 
-  /* Premium Card Effects - FIXED dengan warna konsisten */
+  /* Premium Card Effects */
   .premium-card {
     @apply relative overflow-hidden rounded-2xl border transition-all duration-500;
   }
@@ -113,7 +113,7 @@
   }
 }
 
-/* ==================== SCROLLBAR - FIXED ==================== */
+/* ==================== SCROLLBAR ==================== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -171,7 +171,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ==================== ACCESSIBILITY FOCUS - FIXED ==================== */
+/* ==================== ACCESSIBILITY FOCUS ==================== */
 :focus-visible {
   outline: 2px solid #0EA5E9;
   outline-offset: 2px;
@@ -228,7 +228,8 @@ html {
 }
 
 .industrial-stat-card {
-  @apply bg-white border border-gray-100 rounded-lg p-4 text-center hover:border-primary-500/30 transition-all duration-300;
+  @apply bg-white border border-gray-100 rounded-lg p-4 text-center transition-all duration-300;
+  @apply hover:border-primary-500 hover:border-opacity-30;
 }
 
 .industrial-badge {
