@@ -95,10 +95,14 @@ export default function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
-  // Determine if we're on home page (hero has dark background)
   const isHomePage = pathname === "/";
-  // Background becomes solid sooner on homepage
   const shouldShowSolid = isScrolled || !isHomePage;
+
+  // Warna aksen konsisten dengan Hero (cyan)
+  const accentColor = "text-cyan-500";
+  const hoverAccent = "hover:text-cyan-600";
+  const bgAccent = "bg-cyan-500";
+  const hoverBgAccent = "hover:bg-cyan-600";
 
   return (
     <>
@@ -106,7 +110,7 @@ export default function Header() {
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           shouldShowSolid 
             ? "bg-white shadow-lg py-2" 
-            : "bg-gradient-to-b from-black/60 to-transparent py-5"
+            : "bg-gradient-to-b from-black/50 to-transparent py-5"
         }`}
       >
         <div className="container-custom">
@@ -121,7 +125,7 @@ export default function Header() {
                   height={shouldShowSolid ? 45 : 50}
                   className="transition-all duration-300"
                 />
-                <div className="absolute -inset-1 bg-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className={`absolute -inset-1 ${bgAccent}/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
               </div>
               <div className="flex flex-col">
                 <span className={`font-bold text-lg md:text-xl transition-all duration-300 ${
@@ -130,7 +134,7 @@ export default function Header() {
                   Hais Prima Indonesia
                 </span>
                 <span className={`text-xs hidden md:block transition-all duration-300 ${
-                  shouldShowSolid ? "text-gray-500" : "text-blue-100"
+                  shouldShowSolid ? "text-gray-500" : "text-cyan-100"
                 }`}>
                   Supplier Besi & Baja Terpercaya
                 </span>
@@ -145,7 +149,7 @@ export default function Header() {
                     <>
                       <button
                         className={`relative font-medium transition-all duration-300 flex items-center gap-1 ${
-                          shouldShowSolid ? "text-gray-700 hover:text-blue-600" : "text-white hover:text-blue-200"
+                          shouldShowSolid ? "text-gray-700 hover:text-cyan-600" : "text-white hover:text-cyan-300"
                         }`}
                       >
                         {link.label}
@@ -159,9 +163,9 @@ export default function Header() {
                             <div key={item.title} className="group/sub relative">
                               <Link
                                 href={item.href}
-                                className="flex items-center gap-3 px-4 py-3 bg-gray-50 hover:bg-blue-50 rounded-xl transition"
+                                className="flex items-center gap-3 px-4 py-3 bg-gray-50 hover:bg-cyan-50 rounded-xl transition"
                               >
-                                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                <div className={`w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center text-cyan-600`}>
                                   {item.icon && <item.icon size={20} />}
                                 </div>
                                 <div>
@@ -174,7 +178,7 @@ export default function Header() {
                                   <Link
                                     key={sub.label}
                                     href={sub.href}
-                                    className="block px-4 py-1.5 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                                    className="block px-4 py-1.5 text-sm text-gray-600 hover:text-cyan-600 hover:bg-cyan-50 rounded-lg transition"
                                   >
                                     {sub.label}
                                   </Link>
@@ -186,7 +190,7 @@ export default function Header() {
                         <div className="border-t border-gray-100 p-4 bg-gray-50 rounded-b-2xl">
                           <Link 
                             href="/products" 
-                            className="flex items-center justify-between text-blue-600 font-semibold hover:gap-2 transition-all"
+                            className="flex items-center justify-between text-cyan-600 font-semibold hover:gap-2 transition-all"
                           >
                             <span>Lihat Semua Produk</span>
                             <span>→</span>
@@ -200,15 +204,15 @@ export default function Header() {
                         href={link.href}
                         className={`relative font-medium transition-all duration-300 ${
                           pathname === link.href
-                            ? shouldShowSolid ? "text-blue-600" : "text-white border-b-2 border-blue-400"
-                            : shouldShowSolid ? "text-gray-700 hover:text-blue-600" : "text-white/90 hover:text-white"
+                            ? shouldShowSolid ? "text-cyan-600" : "text-white border-b-2 border-cyan-400"
+                            : shouldShowSolid ? "text-gray-700 hover:text-cyan-600" : "text-white/90 hover:text-white"
                         }`}
                       >
                         {link.label}
                         {pathname === link.href && shouldShowSolid && (
                           <motion.div
                             layoutId="activeNav"
-                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600"
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyan-500"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.3 }}
@@ -279,19 +283,19 @@ export default function Header() {
                   <input
                     type="text"
                     placeholder="Cari produk: Plate, WF, Pipa Seamless, Racking, Atap UPVC..."
-                    className="w-full px-5 py-3 pr-12 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    className="w-full px-5 py-3 pr-12 border border-gray-200 rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20"
                     autoFocus
                   />
-                  <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600">
+                  <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-cyan-600">
                     <FaSearch size={18} />
                   </button>
                 </div>
                 <div className="flex gap-4 mt-3 text-xs text-gray-400">
                   <span>Populer:</span>
-                  <Link href="/products?category=Material+Steel&sub=WF" className="hover:text-blue-600">WF Beam</Link>
-                  <Link href="/products?category=Material+Steel&sub=Seamless" className="hover:text-blue-600">Pipa Seamless</Link>
-                  <Link href="/products?category=Warehouse+Racking" className="hover:text-blue-600">Pallet Racking</Link>
-                  <Link href="/products?category=Atap+UPVC" className="hover:text-blue-600">Atap UPVC</Link>
+                  <Link href="/products?category=Material+Steel&sub=WF" className="hover:text-cyan-600">WF Beam</Link>
+                  <Link href="/products?category=Material+Steel&sub=Seamless" className="hover:text-cyan-600">Pipa Seamless</Link>
+                  <Link href="/products?category=Warehouse+Racking" className="hover:text-cyan-600">Pallet Racking</Link>
+                  <Link href="/products?category=Atap+UPVC" className="hover:text-cyan-600">Atap UPVC</Link>
                 </div>
               </div>
             </motion.div>
@@ -312,14 +316,14 @@ export default function Header() {
                 {navLinks.map((link) => (
                   <div key={link.label}>
                     {link.hasDropdown ? (
-                      <MobileDropdown item={link} pathname={pathname} setIsOpen={setIsOpen} />
+                      <MobileDropdown item={link} pathname={pathname} setIsOpen={setIsOpen} accentColor="text-cyan-600" />
                     ) : (
                       link.href && (
                         <Link
                           href={link.href}
                           onClick={() => setIsOpen(false)}
-                          className={`block py-3 font-medium transition-colors hover:text-blue-600 ${
-                            pathname === link.href ? "text-blue-600" : "text-gray-700"
+                          className={`block py-3 font-medium transition-colors hover:text-cyan-600 ${
+                            pathname === link.href ? "text-cyan-600" : "text-gray-700"
                           }`}
                         >
                           {link.label}
@@ -352,14 +356,14 @@ export default function Header() {
 }
 
 // Component for Mobile Dropdown
-function MobileDropdown({ item, pathname, setIsOpen }: { item: any; pathname: string; setIsOpen: (open: boolean) => void }) {
+function MobileDropdown({ item, pathname, setIsOpen, accentColor }: { item: any; pathname: string; setIsOpen: (open: boolean) => void; accentColor: string }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="border-b border-gray-100 last:border-0">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between w-full py-3 font-medium text-gray-700 hover:text-blue-600 transition"
+        className="flex items-center justify-between w-full py-3 font-medium text-gray-700 hover:text-cyan-600 transition"
       >
         <span>{item.label}</span>
         <FaChevronDown className={`transform transition-transform ${isExpanded ? "rotate-180" : ""}`} size={12} />
@@ -371,7 +375,7 @@ function MobileDropdown({ item, pathname, setIsOpen }: { item: any; pathname: st
               <Link
                 href={subItem.href}
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-sm font-semibold text-gray-800 hover:text-blue-600"
+                className="block py-2 text-sm font-semibold text-gray-800 hover:text-cyan-600"
               >
                 {subItem.title}
               </Link>
@@ -381,7 +385,7 @@ function MobileDropdown({ item, pathname, setIsOpen }: { item: any; pathname: st
                     key={sub.label}
                     href={sub.href}
                     onClick={() => setIsOpen(false)}
-                    className="block py-1.5 text-sm text-gray-600 hover:text-blue-600"
+                    className="block py-1.5 text-sm text-gray-600 hover:text-cyan-600"
                   >
                     {sub.label}
                   </Link>
