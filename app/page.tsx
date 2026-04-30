@@ -10,7 +10,7 @@ import ProjectPreview from "@/components/home/ProjectPreview";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import CTASection from "@/components/home/CTASection";
 
-// Metadata untuk SEO
+// Metadata untuk SEO - FIXED
 export const metadata: Metadata = {
   title: "PT Hais Prima Indonesia - Supplier Besi Baja & Material Industri Terpercaya",
   description: "Distributor besi baja, stainless steel, pipa seamless, warehouse racking, dan atap UPVC. SNI Certified, EPC Ready, Melayani proyek konstruksi & industri di seluruh Indonesia.",
@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PT Hais Prima Indonesia - Industrial Material Supply",
     description: "Solusi material industri untuk konstruksi, manufaktur, dan infrastruktur",
-    url: "https://haisprima.com",
+    url: "https://haisindonesia.com", // ← FIXED: ganti dari haisprima.com
     siteName: "PT Hais Prima Indonesia",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://haisindonesia.com/og-image.jpg", // ← FIXED: absolute URL
         width: 1200,
         height: 630,
         alt: "PT Hais Prima Indonesia - Supplier Besi Baja",
@@ -43,10 +43,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code",
+    google: "Vd8uLdWWa5ezH_VmKSl68JlAYBCpDw7d26Jxjfrc28Q", // ← GANTI dengan kode real dari Search Console
   },
   alternates: {
-    canonical: "https://haisprima.com",
+    canonical: "https://haisindonesia.com", // ← FIXED: ganti dari haisprima.com
   },
 };
 
