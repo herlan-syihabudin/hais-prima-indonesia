@@ -96,13 +96,11 @@ export default function Header() {
   }, [isOpen]);
 
   const isHomePage = pathname === "/";
+  // 🔥 KUNCI: header transparan hanya di homepage BELUM scroll
   const shouldShowSolid = isScrolled || !isHomePage;
 
   // Warna aksen konsisten dengan Hero (cyan)
-  const accentColor = "text-cyan-500";
-  const hoverAccent = "hover:text-cyan-600";
   const bgAccent = "bg-cyan-500";
-  const hoverBgAccent = "hover:bg-cyan-600";
 
   return (
     <>
@@ -110,37 +108,37 @@ export default function Header() {
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           shouldShowSolid 
             ? "bg-white shadow-lg py-2" 
-            : "bg-gradient-to-b from-black/50 to-transparent py-5"
+            : "bg-transparent py-5"  // ← transparan total!
         }`}
       >
         <div className="container-custom">
           <div className="flex justify-between items-center">
             {/* Logo */}
-<Link href="/" className="flex items-center gap-3 group">
-  <div className="relative">
-    <Image 
-      src="/images/logo.jpeg" 
-      alt="Logo PT Hais Prima Indonesia" 
-      width={shouldShowSolid ? 56 : 64} 
-      height={shouldShowSolid ? 56 : 64}
-      className="transition-all duration-300 mix-blend-multiply"  // ← TAMBAHIN INI
-      priority
-    />
-    <div className={`absolute -inset-1 ${bgAccent}/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-  </div>
-  <div className="flex flex-col">
-    <span className={`font-bold text-lg md:text-xl transition-all duration-300 ${
-      shouldShowSolid ? "text-gray-800" : "text-white"
-    }`}>
-      Hais Prima Indonesia
-    </span>
-    <span className={`text-xs hidden md:block transition-all duration-300 ${
-      shouldShowSolid ? "text-gray-500" : "text-cyan-100"
-    }`}>
-      Supplier Besi & Baja Terpercaya
-    </span>
-  </div>
-</Link>
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative">
+                <Image 
+                  src="/images/logo.jpeg" 
+                  alt="Logo PT Hais Prima Indonesia" 
+                  width={shouldShowSolid ? 56 : 64} 
+                  height={shouldShowSolid ? 56 : 64}
+                  className="transition-all duration-300 mix-blend-multiply"
+                  priority
+                />
+                <div className={`absolute -inset-1 ${bgAccent}/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+              </div>
+              <div className="flex flex-col">
+                <span className={`font-bold text-lg md:text-xl transition-all duration-300 ${
+                  shouldShowSolid ? "text-gray-800" : "text-white"
+                }`}>
+                  Hais Prima Indonesia
+                </span>
+                <span className={`text-xs hidden md:block transition-all duration-300 ${
+                  shouldShowSolid ? "text-gray-500" : "text-cyan-100"
+                }`}>
+                  Supplier Besi & Baja Terpercaya
+                </span>
+              </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-6">
@@ -350,8 +348,8 @@ export default function Header() {
         </AnimatePresence>
       </header>
 
-      {/* Spacer */}
-      <div className="h-16 md:h-20" />
+      {/* Spacer - dinamis */}
+      <div className={`${shouldShowSolid ? "h-16 md:h-20" : "h-0"}`} />
     </>
   );
 }
