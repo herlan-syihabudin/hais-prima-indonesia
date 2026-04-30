@@ -32,14 +32,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         
         {/* Year Badge */}
         <div className="absolute top-4 right-4 z-10">
-  <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-1 rounded-lg text-xs font-semibold">
-    {project.year}
-  </div>
-</div>
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-1 rounded-lg text-xs font-semibold">
+            {project.year}
+          </div>
+        </div>
 
-        {/* View Button on Hover */}
+        {/* View Button on Hover - FIXED */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-          <button className="bg-white/90 backdrop-blur text-blue-600 px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition flex items-center gap-2 shadow-md">
+          <button className="bg-white/90 backdrop-blur text-primary-500 px-5 py-2.5 rounded-lg font-semibold hover:bg-primary-600 hover:text-white transition flex items-center gap-2 shadow-md">
             Lihat Detail
             <FaArrowRight size={12} />
           </button>
@@ -47,11 +47,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       <div className="p-5">
-        {/* Project Type Tag */}
-<div className="inline-flex items-center px-2 py-1 text-[10px] bg-blue-50 text-blue-600 rounded-md mb-2">
-  Industrial Project
-</div>
-        <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
+        {/* Project Type Tag - FIXED */}
+        <div className="inline-flex items-center px-2 py-1 text-[10px] bg-primary-50 text-primary-600 rounded-md mb-2">
+          Industrial Project
+        </div>
+        
+        {/* Title - FIXED hover color */}
+        <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-primary-500 transition-colors line-clamp-1">
           {project.title}
         </h3>
         
