@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const partners = [
   { name: "PT. Bhaskara Buana Mulya", logo: "/images/partners/logo_bbm-2.png" },
-  { name: "Pembangunan Jaya", logo: "/images/partners/pembangunan-jaya.png" },
+  { name: "PT. GS Battery Karawang Plant", logo: "/images/partners/logo_GS.png" },
   { name: "Adhi Karya", logo: "/images/partners/adhi.png" },
   { name: "PP Construction", logo: "/images/partners/pp.png" },
   { name: "Total Bangun Persada", logo: "/images/partners/total.png" },
