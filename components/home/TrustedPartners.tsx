@@ -9,10 +9,10 @@ import { useState } from "react";
 const partners = [
   { name: "PT. Bhaskara Buana Mulya", logo: "/images/partners/logo_bbm-2.png" },
   { name: "PT. GS Battery Karawang Plant", logo: "/images/partners/logo_GS.png" },
-  { name: "Adhi Karya", logo: "/images/partners/adhi.png" },
-  { name: "PP Construction", logo: "/images/partners/pp.png" },
-  { name: "Total Bangun Persada", logo: "/images/partners/total.png" },
-  { name: "Jaya Konstruksi", logo: "/images/partners/jaya.png" },
+  { name: "PT. Sarana Utama Adimandiri", logo: "/images/partners/sua.png" },
+  { name: "PT. Bukit Muria Jaya", logo: "/images/partners/bmj.png" },
+  { name: "PT. Honda Prospek Motor", logo: "/images/partners/honda.png" },
+  { name: "PT. Jaya Obayashi", logo: "/images/partners/jaya.png" },
 ];
 
 export default function TrustedPartners() {
