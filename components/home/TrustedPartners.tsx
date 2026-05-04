@@ -13,6 +13,12 @@ const partners = [
   { name: "PT. Bukit Muria Jaya", logo: "/images/partners/bmj.png" },
   { name: "PT. Honda Prospek Motor", logo: "/images/partners/honda.png" },
   { name: "PT. Jaya Obayashi", logo: "/images/partners/jaya.png" },
+  // Customer Baru
+  { name: "PT. ATI", logo: "/images/partners/ati.png" },
+  { name: "PT. Amtra Elektrik", logo: "/images/partners/amtra.png" },
+  { name: "PT. KOBIN", logo: "/images/partners/kobin.png" },
+  { name: "PT. Superior Porcelain", logo: "/images/partners/superior.png" },
+  { name: "PT. Fujita", logo: "/images/partners/fujita.png" },
 ];
 
 export default function TrustedPartners() {
@@ -29,7 +35,7 @@ export default function TrustedPartners() {
           title="Dipercaya oleh"
           subtitle="Mitra terpercaya dalam proyek-proyek besar nasional"
         />
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mt-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mt-12">
           {partners.map((partner, index) => (
             <motion.div
               key={index}
