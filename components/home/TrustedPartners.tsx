@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const partners = [
-  { name: "Waskita Karya", logo: "/images/partners/waskita.png" },
+  { name: "PT. Bhaskara Buana Mulya", logo: "/images/partners/logo_bbm-2.png" },
   { name: "Pembangunan Jaya", logo: "/images/partners/pembangunan-jaya.png" },
   { name: "Adhi Karya", logo: "/images/partners/adhi.png" },
   { name: "PP Construction", logo: "/images/partners/pp.png" },
